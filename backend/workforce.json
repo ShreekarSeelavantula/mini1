@@ -1,0 +1,242 @@
+{
+  "tailoring": {
+    "initialTeamSize": 1,
+    "roles": ["Tailor/Designer", "Quality Controller"],
+    "growthPlan": {
+      "month3": "Continue solo operations while building customer base and improving skills through advanced courses",
+      "month6": "Consider hiring a part-time assistant for basic alterations to handle increased workload",
+      "month12": "Expand to 2-3 team members including a junior tailor and a customer service person for shop operations"
+    },
+    "soloTips": [
+      "Use time-blocking to manage different types of work (cutting, sewing, fitting)",
+      "Invest in quality equipment to increase efficiency and reduce manual effort",
+      "Create standard pricing charts and measurement forms to streamline processes",
+      "Use appointment scheduling to manage customer fittings effectively",
+      "Build relationships with fabric suppliers for better rates and quality materials"
+    ]
+  },
+  "cooking": {
+    "initialTeamSize": 1,
+    "roles": ["Head Cook", "Food Preparation Assistant"],
+    "growthPlan": {
+      "month3": "Focus on perfecting recipes and building a loyal customer base through consistent quality",
+      "month6": "Hire 1 assistant for food preparation and packaging to increase daily capacity",
+      "month12": "Expand team to 3-4 people including delivery person and kitchen assistant for larger operations"
+    },
+    "soloTips": [
+      "Prep ingredients in bulk during off-peak hours to save daily cooking time",
+      "Use efficient kitchen tools and appliances to speed up cooking processes",
+      "Create a weekly menu plan to streamline shopping and preparation",
+      "Implement proper food storage and hygiene practices for safety and quality",
+      "Use delivery apps or local delivery services to expand reach without hiring"
+    ]
+  },
+  "handicrafts": {
+    "initialTeamSize": 1,
+    "roles": ["Artisan/Designer", "Quality Inspector"],
+    "growthPlan": {
+      "month3": "Focus on perfecting craft techniques and building an online presence",
+      "month6": "Consider partnering with other artisans or hiring a part-time assistant for basic tasks",
+      "month12": "Build a small team of 2-3 skilled artisans to increase production capacity"
+    },
+    "soloTips": [
+      "Create templates and patterns to standardize production and reduce time",
+      "Batch similar tasks together to improve efficiency",
+      "Use social media effectively to showcase work and attract customers",
+      "Participate in craft fairs and exhibitions to build brand recognition",
+      "Maintain detailed records of materials and time spent for accurate pricing"
+    ]
+  },
+  "tutoring": {
+    "initialTeamSize": 1,
+    "roles": ["Primary Tutor", "Subject Specialist"],
+    "growthPlan": {
+      "month3": "Build reputation through quality teaching and student results",
+      "month6": "Consider hiring subject specialists for areas outside your expertise",
+      "month12": "Expand to 3-4 tutors covering different subjects and grade levels"
+    },
+    "soloTips": [
+      "Use online tools and platforms to manage scheduling and payments",
+      "Create standardized lesson plans and materials for efficiency",
+      "Offer group sessions to increase income per hour",
+      "Use technology for online tutoring to expand geographical reach",
+      "Build strong relationships with parents for referrals and retention"
+    ]
+  },
+  "beauty_services": {
+    "initialTeamSize": 1,
+    "roles": ["Beauty Specialist", "Receptionist"],
+    "growthPlan": {
+      "month3": "Focus on building skills and client base through quality service",
+      "month6": "Hire a receptionist or assistant to manage bookings and basic services",
+      "month12": "Expand to 2-3 beauty specialists covering different services like hair, makeup, and skincare"
+    },
+    "soloTips": [
+      "Use appointment booking apps to manage schedule efficiently",
+      "Invest in quality products and tools for professional results",
+      "Create service packages to increase average transaction value",
+      "Build a strong social media presence with before/after photos",
+      "Offer mobile services to increase convenience and reach"
+    ]
+  },
+  "online_business": {
+    "initialTeamSize": 1,
+    "roles": ["Business Owner", "Digital Marketer"],
+    "growthPlan": {
+      "month3": "Focus on product development and building online presence",
+      "month6": "Consider hiring virtual assistants for customer service and order processing",
+      "month12": "Build a team of 2-3 including content creator, customer service, and logistics coordinator"
+    },
+    "soloTips": [
+      "Use automation tools for social media posting and email marketing",
+      "Leverage dropshipping or print-on-demand to minimize inventory management",
+      "Use analytics tools to track performance and optimize strategies",
+      "Build email lists and customer databases for repeat business",
+      "Partner with influencers or other businesses for cross-promotion"
+    ]
+  },
+  "food_business": {
+    "initialTeamSize": 2,
+    "roles": ["Head Chef", "Kitchen Assistant", "Server"],
+    "growthPlan": {
+      "month3": "Establish efficient kitchen operations and build customer base",
+      "month6": "Hire additional kitchen staff and servers to handle increased volume",
+      "month12": "Expand to 5-6 team members including specialized cooks, servers, and a manager"
+    },
+    "soloTips": [
+      "Start with a limited menu to maintain quality and efficiency",
+      "Use food delivery platforms to expand reach without additional staff",
+      "Implement proper inventory management to reduce waste",
+      "Focus on signature dishes that differentiate from competitors",
+      "Build relationships with suppliers for consistent quality and pricing"
+    ]
+  },
+  "boutique": {
+    "initialTeamSize": 1,
+    "roles": ["Store Manager", "Sales Associate"],
+    "growthPlan": {
+      "month3": "Focus on curating inventory and building customer relationships",
+      "month6": "Hire a part-time sales associate to manage store while sourcing new products",
+      "month12": "Expand to 2-3 team members including sales staff and a visual merchandiser"
+    },
+    "soloTips": [
+      "Use inventory management software to track stock and sales",
+      "Create attractive window displays to draw customers",
+      "Build relationships with suppliers and designers for unique products",
+      "Offer personal styling services to increase customer value",
+      "Use social media to showcase new arrivals and styling tips"
+    ]
+  },
+  "daycare": {
+    "initialTeamSize": 2,
+    "roles": ["Lead Caregiver", "Assistant Caregiver", "Activity Coordinator"],
+    "growthPlan": {
+      "month3": "Establish routines and safety protocols with initial team",
+      "month6": "Hire additional caregivers to maintain proper child-to-caregiver ratios",
+      "month12": "Expand to 4-5 team members including specialized teachers and support staff"
+    },
+    "soloTips": [
+      "Maintain proper licensing and safety certifications",
+      "Create structured daily activities and learning programs",
+      "Use management software for parent communication and billing",
+      "Build strong relationships with parents for trust and referrals",
+      "Continuously update skills through early childhood education courses"
+    ]
+  },
+  "event_planning": {
+    "initialTeamSize": 1,
+    "roles": ["Event Planner", "Coordinator"],
+    "growthPlan": {
+      "month3": "Build vendor network and establish planning processes",
+      "month6": "Hire event coordinators to manage multiple events simultaneously",
+      "month12": "Expand to 3-4 team members including specialized planners for different event types"
+    },
+    "soloTips": [
+      "Use event management software to track all details and timelines",
+      "Build a reliable network of vendors and suppliers",
+      "Create detailed checklists and templates for different event types",
+      "Maintain emergency backup plans for all critical services",
+      "Document successful events for portfolio and future reference"
+    ]
+  },
+  "jewelry_making": {
+    "initialTeamSize": 1,
+    "roles": ["Jewelry Designer", "Quality Controller"],
+    "growthPlan": {
+      "month3": "Perfect techniques and build a signature style",
+      "month6": "Consider hiring an assistant for basic tasks like polishing and packaging",
+      "month12": "Expand to 2-3 artisans to increase production while maintaining quality"
+    },
+    "soloTips": [
+      "Invest in quality tools and workspace for professional results",
+      "Create detailed designs and keep records for reproducibility",
+      "Use online platforms to reach wider customer base",
+      "Participate in craft shows and jewelry exhibitions",
+      "Build relationships with gemstone and metal suppliers"
+    ]
+  },
+  "photography": {
+    "initialTeamSize": 1,
+    "roles": ["Photographer", "Photo Editor"],
+    "growthPlan": {
+      "month3": "Build portfolio and establish pricing structure",
+      "month6": "Consider hiring an assistant for equipment handling and basic editing",
+      "month12": "Expand to 2-3 photographers to handle multiple events and different specializations"
+    },
+    "soloTips": [
+      "Invest in backup equipment to ensure reliability",
+      "Use photo editing software efficiently to reduce post-processing time",
+      "Create packages for different types of events and budgets",
+      "Build strong online portfolio and social media presence",
+      "Network with event planners and venues for referrals"
+    ]
+  },
+  "catering": {
+    "initialTeamSize": 2,
+    "roles": ["Head Chef", "Kitchen Assistant", "Server"],
+    "growthPlan": {
+      "month3": "Establish efficient cooking and service processes",
+      "month6": "Hire additional kitchen and service staff for larger events",
+      "month12": "Build team of 5-6 including specialized cooks, servers, and event coordinator"
+    },
+    "soloTips": [
+      "Start with smaller events to build reputation and processes",
+      "Create standardized menus and portion calculations",
+      "Invest in proper transportation and serving equipment",
+      "Build relationships with event venues and planners",
+      "Maintain proper food safety certifications and insurance"
+    ]
+  },
+  "home_bakery": {
+    "initialTeamSize": 1,
+    "roles": ["Baker", "Decorator"],
+    "growthPlan": {
+      "month3": "Perfect recipes and establish consistent quality",
+      "month6": "Consider hiring help for basic baking tasks during busy periods",
+      "month12": "Expand to 2-3 team members including specialized decorators and assistants"
+    },
+    "soloTips": [
+      "Use commercial-grade equipment for efficiency and consistency",
+      "Create detailed recipes and procedures for reproducibility",
+      "Use online ordering systems to manage customer requests",
+      "Build relationships with local suppliers for quality ingredients",
+      "Maintain proper food safety practices and licensing"
+    ]
+  },
+  "consulting": {
+    "initialTeamSize": 1,
+    "roles": ["Lead Consultant", "Research Analyst"],
+    "growthPlan": {
+      "month3": "Build expertise and establish credibility in chosen niche",
+      "month6": "Consider partnering with other consultants or hiring research support",
+      "month12": "Expand to 2-3 consultants covering different specializations or industries"
+    },
+    "soloTips": [
+      "Develop standardized frameworks and methodologies",
+      "Use project management tools to track client work efficiently",
+      "Build thought leadership through content creation and speaking",
+      "Create different service packages for various client needs",
+      "Maintain continuous learning to stay current with industry trends"
+    ]
+  }
+}

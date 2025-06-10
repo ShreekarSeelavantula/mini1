@@ -1,0 +1,417 @@
+{
+  "tailoring": [
+    {
+      "title": "Complete Tailoring Course - Beginner to Expert",
+      "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "type": "Video Course",
+      "duration": "40 hours",
+      "level": "All Levels"
+    },
+    {
+      "title": "NSDC Tailoring Certification Program",
+      "link": "https://www.nsdcindia.org/",
+      "type": "Government Certification",
+      "duration": "3 months",
+      "level": "Beginner"
+    },
+    {
+      "title": "Fashion Design Fundamentals",
+      "link": "https://www.coursera.org/learn/fashion-design",
+      "type": "Online Course",
+      "duration": "6 weeks",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Advanced Pattern Making Techniques",
+      "link": "https://www.udemy.com/course/pattern-making/",
+      "type": "Specialized Course",
+      "duration": "20 hours",
+      "level": "Advanced"
+    }
+  ],
+  "cooking": [
+    {
+      "title": "Professional Cooking Techniques",
+      "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "type": "Video Series",
+      "duration": "25 hours",
+      "level": "All Levels"
+    },
+    {
+      "title": "Food Business License & Setup Guide",
+      "link": "https://www.fssai.gov.in/",
+      "type": "Government Guide",
+      "duration": "2 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Indian Cuisine Mastery Course",
+      "link": "https://www.udemy.com/course/indian-cooking/",
+      "type": "Online Course",
+      "duration": "12 weeks",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Food Safety & Hygiene Certification",
+      "link": "https://www.fssai.gov.in/cms/food-safety-training.php",
+      "type": "Certification",
+      "duration": "3 days",
+      "level": "Essential"
+    }
+  ],
+  "handicrafts": [
+    {
+      "title": "Traditional Indian Handicrafts Workshop",
+      "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "type": "Workshop Series",
+      "duration": "30 hours",
+      "level": "All Levels"
+    },
+    {
+      "title": "Craft Business Marketing Strategies",
+      "link": "https://www.skillshare.com/classes/craft-marketing",
+      "type": "Business Course",
+      "duration": "5 hours",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Online Craft Store Setup Guide",
+      "link": "https://www.shopify.com/blog/craft-business",
+      "type": "Business Tutorial",
+      "duration": "3 hours",
+      "level": "Beginner"
+    },
+    {
+      "title": "Advanced Embroidery Techniques",
+      "link": "https://www.craftsy.com/embroidery",
+      "type": "Skill Course",
+      "duration": "15 hours",
+      "level": "Advanced"
+    }
+  ],
+  "tutoring": [
+    {
+      "title": "Effective Teaching Methodologies",
+      "link": "https://www.coursera.org/learn/teaching-methods",
+      "type": "Certification Course",
+      "duration": "8 weeks",
+      "level": "All Levels"
+    },
+    {
+      "title": "Online Tutoring Platform Setup",
+      "link": "https://teachable.com/blog/online-tutoring",
+      "type": "Setup Guide",
+      "duration": "2 hours",
+      "level": "Beginner"
+    },
+    {
+      "title": "Student Psychology & Learning Styles",
+      "link": "https://www.edx.org/course/educational-psychology",
+      "type": "Academic Course",
+      "duration": "10 weeks",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Digital Teaching Tools Mastery",
+      "link": "https://www.futurelearn.com/courses/digital-teaching",
+      "type": "Technology Course",
+      "duration": "4 weeks",
+      "level": "Intermediate"
+    }
+  ],
+  "beauty_services": [
+    {
+      "title": "Professional Beauty Course Certification",
+      "link": "https://www.vlcc.com/courses/",
+      "type": "Professional Certification",
+      "duration": "6 months",
+      "level": "All Levels"
+    },
+    {
+      "title": "Beauty Salon Business Setup Guide",
+      "link": "https://www.entrepreneur.com/article/beauty-salon-business",
+      "type": "Business Guide",
+      "duration": "4 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Latest Beauty Trends & Techniques",
+      "link": "https://www.masterclass.com/classes/beauty",
+      "type": "Masterclass",
+      "duration": "20 hours",
+      "level": "Advanced"
+    },
+    {
+      "title": "Bridal Makeup Specialization",
+      "link": "https://www.lakme-academy.com/courses/bridal-makeup",
+      "type": "Specialization",
+      "duration": "3 months",
+      "level": "Intermediate"
+    }
+  ],
+  "online_business": [
+    {
+      "title": "Digital Marketing for Beginners",
+      "link": "https://www.google.com/skillshop/course/digital-marketing",
+      "type": "Free Course",
+      "duration": "15 hours",
+      "level": "Beginner"
+    },
+    {
+      "title": "E-commerce Business Setup Complete Guide",
+      "link": "https://www.shopify.com/guides/ecommerce",
+      "type": "Business Guide",
+      "duration": "8 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Social Media Marketing Strategy",
+      "link": "https://www.hubspot.com/resources/courses/social-media",
+      "type": "Strategy Course",
+      "duration": "12 hours",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Advanced SEO & Content Marketing",
+      "link": "https://www.semrush.com/academy/",
+      "type": "Advanced Course",
+      "duration": "25 hours",
+      "level": "Advanced"
+    }
+  ],
+  "food_business": [
+    {
+      "title": "Food Safety & Hygiene Certification",
+      "link": "https://www.fssai.gov.in/cms/food-safety-training.php",
+      "type": "Government Certification",
+      "duration": "3 days",
+      "level": "Essential"
+    },
+    {
+      "title": "Restaurant Management Complete Course",
+      "link": "https://www.coursera.org/learn/restaurant-management",
+      "type": "Management Course",
+      "duration": "8 weeks",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Food Delivery Business Model",
+      "link": "https://www.udemy.com/course/food-delivery-business/",
+      "type": "Business Course",
+      "duration": "6 hours",
+      "level": "Beginner"
+    },
+    {
+      "title": "Commercial Kitchen Setup Guide",
+      "link": "https://www.webstaurantstore.com/guide/commercial-kitchen-design/",
+      "type": "Setup Guide",
+      "duration": "3 hours read",
+      "level": "Intermediate"
+    }
+  ],
+  "boutique": [
+    {
+      "title": "Fashion Retail Management Course",
+      "link": "https://www.nift.ac.in/courses/fashion-retail",
+      "type": "Professional Course",
+      "duration": "6 months",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Boutique Interior Design Guide",
+      "link": "https://www.architecturaldigest.com/story/boutique-design",
+      "type": "Design Guide",
+      "duration": "3 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Fashion Buying & Merchandising",
+      "link": "https://www.futurelearn.com/courses/fashion-buying",
+      "type": "Professional Course",
+      "duration": "8 weeks",
+      "level": "Advanced"
+    },
+    {
+      "title": "Visual Merchandising Techniques",
+      "link": "https://www.skillshare.com/classes/visual-merchandising",
+      "type": "Skill Course",
+      "duration": "4 hours",
+      "level": "Intermediate"
+    }
+  ],
+  "daycare": [
+    {
+      "title": "Child Care & Development Certification",
+      "link": "https://www.coursera.org/learn/child-development",
+      "type": "Certification",
+      "duration": "12 weeks",
+      "level": "Essential"
+    },
+    {
+      "title": "Daycare License & Legal Requirements",
+      "link": "https://www.childcareaware.org/providers/starting-child-care-business/",
+      "type": "Legal Guide",
+      "duration": "4 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Early Childhood Education Methods",
+      "link": "https://www.edx.org/course/early-childhood-education",
+      "type": "Education Course",
+      "duration": "16 weeks",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Child Safety & First Aid Training",
+      "link": "https://www.redcross.org/take-a-class/cpr/child-babysitting-safety",
+      "type": "Safety Training",
+      "duration": "1 day",
+      "level": "Essential"
+    }
+  ],
+  "event_planning": [
+    {
+      "title": "Professional Event Management Course",
+      "link": "https://www.coursera.org/learn/event-management",
+      "type": "Professional Course",
+      "duration": "10 weeks",
+      "level": "All Levels"
+    },
+    {
+      "title": "Event Planning Business Setup Guide",
+      "link": "https://www.entrepreneur.com/article/event-planning-business",
+      "type": "Startup Guide",
+      "duration": "5 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Wedding Planning Specialization",
+      "link": "https://www.skillshare.com/classes/wedding-planning",
+      "type": "Specialization",
+      "duration": "20 hours",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Corporate Event Management",
+      "link": "https://www.udemy.com/course/corporate-event-planning/",
+      "type": "Specialized Course",
+      "duration": "8 hours",
+      "level": "Advanced"
+    }
+  ],
+  "jewelry_making": [
+    {
+      "title": "Jewelry Making Fundamentals",
+      "link": "https://www.craftsy.com/jewelry-making",
+      "type": "Skill Course",
+      "duration": "15 hours",
+      "level": "Beginner"
+    },
+    {
+      "title": "Silver Jewelry Techniques",
+      "link": "https://www.youtube.com/playlist?list=jewelry-making",
+      "type": "Video Tutorial",
+      "duration": "20 hours",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Jewelry Business Marketing",
+      "link": "https://www.skillshare.com/classes/jewelry-business",
+      "type": "Business Course",
+      "duration": "6 hours",
+      "level": "Intermediate"
+    }
+  ],
+  "photography": [
+    {
+      "title": "Professional Photography Course",
+      "link": "https://www.udemy.com/course/photography-masterclass/",
+      "type": "Professional Course",
+      "duration": "30 hours",
+      "level": "All Levels"
+    },
+    {
+      "title": "Wedding Photography Specialization",
+      "link": "https://www.creativelive.com/class/wedding-photography",
+      "type": "Specialization",
+      "duration": "25 hours",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Photography Business Setup",
+      "link": "https://www.entrepreneur.com/article/photography-business",
+      "type": "Business Guide",
+      "duration": "4 hours read",
+      "level": "Beginner"
+    }
+  ],
+  "catering": [
+    {
+      "title": "Catering Business Complete Guide",
+      "link": "https://www.sba.gov/business-guide/plan-your-business/catering-business",
+      "type": "Business Guide",
+      "duration": "6 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Large Scale Cooking Techniques",
+      "link": "https://www.culinary.net/large-scale-cooking",
+      "type": "Skill Course",
+      "duration": "12 hours",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Food Service Management",
+      "link": "https://www.coursera.org/learn/food-service-management",
+      "type": "Management Course",
+      "duration": "8 weeks",
+      "level": "Advanced"
+    }
+  ],
+  "home_bakery": [
+    {
+      "title": "Professional Baking Course",
+      "link": "https://www.kingarthurbaking.com/learn/baking-school",
+      "type": "Professional Course",
+      "duration": "40 hours",
+      "level": "All Levels"
+    },
+    {
+      "title": "Home Bakery Business Setup",
+      "link": "https://www.entrepreneur.com/article/home-bakery-business",
+      "type": "Business Guide",
+      "duration": "3 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Cake Decorating Mastery",
+      "link": "https://www.craftsy.com/cake-decorating",
+      "type": "Skill Course",
+      "duration": "18 hours",
+      "level": "Intermediate"
+    }
+  ],
+  "consulting": [
+    {
+      "title": "Management Consulting Fundamentals",
+      "link": "https://www.coursera.org/learn/management-consulting",
+      "type": "Professional Course",
+      "duration": "12 weeks",
+      "level": "Intermediate"
+    },
+    {
+      "title": "Starting a Consulting Business",
+      "link": "https://www.sba.gov/business-guide/plan-your-business/consulting-business",
+      "type": "Business Guide",
+      "duration": "4 hours read",
+      "level": "Beginner"
+    },
+    {
+      "title": "Business Analysis & Strategy",
+      "link": "https://www.edx.org/course/business-analysis-strategy",
+      "type": "Strategy Course",
+      "duration": "10 weeks",
+      "level": "Advanced"
+    }
+  ]
+}
