@@ -49,15 +49,57 @@ export interface FinancialPlan {
   toolsNeeded: string[];
 }
 
+export interface Mentor {
+  id: string;
+  name: string;
+  profilePic: string;
+  specialization: string[];
+  businessType: 'goods' | 'service' | 'both';
+  experience: string;
+  rating: number;
+  totalMentees: number;
+  fees: {
+    consultation: string;
+    monthly: string;
+    package: string;
+  };
+  contact: {
+    email: string;
+    phone: string;
+    whatsapp?: string;
+    linkedin?: string;
+  };
+  address: {
+    city: string;
+    state: string;
+    area: string;
+  };
+  availability: {
+    mode: 'online' | 'offline' | 'both';
+    timings: string[];
+    timezone: string;
+  };
+  languages: string[];
+  bio: string;
+  achievements: string[];
+  testimonials: {
+    name: string;
+    business: string;
+    feedback: string;
+    rating: number;
+  }[];
+}
+
 export interface Recommendation {
   name: string;
   id: string;
   description: string;
-  businessType: 'goods' | 'service';
+  businessType: 'goods' | 'service' | 'both';
   confidenceScore: number;
   resources: Resource[];
   financials: FinancialPlan;
   caseStudies: CaseStudy[];
   workforcePlan: WorkforcePlan;
   dataSources: string[];
+  mentors: Mentor[];
 }

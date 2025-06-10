@@ -34,13 +34,13 @@ function App() {
       }
     } catch (error) {
       console.error('Network error:', error);
-      // Enhanced fallback data with all new features
+      // Enhanced fallback data with all new features including mentors
       setRecommendations([
         {
           name: 'Tailoring Services',
           id: 'tailoring',
           description: 'A tailoring business involves creating, altering, and repairing clothing items. This service-based business can range from basic alterations to custom clothing design, offering flexibility to work from home or establish a shop.',
-          businessType: 'service',
+          businessType: 'goods',
           confidenceScore: 85,
           resources: [
             { title: 'Complete Tailoring Course', link: '#', type: 'Video Course', duration: '40 hours', level: 'All Levels' },
@@ -83,6 +83,55 @@ function App() {
               'Create standard pricing charts and measurement forms'
             ]
           },
+          mentors: [
+            {
+              id: 'mentor_tailoring_001',
+              name: 'Priya Sharma',
+              profilePic: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400',
+              specialization: ['Tailoring', 'Fashion Design', 'Boutique Management'],
+              businessType: 'goods',
+              experience: '8 years in tailoring and fashion design',
+              rating: 4.8,
+              totalMentees: 45,
+              fees: {
+                consultation: '₹500/hour',
+                monthly: '₹3,000/month',
+                package: '₹8,000 (3 months)'
+              },
+              contact: {
+                email: 'priya.sharma.mentor@gmail.com',
+                phone: '+91-9876543210',
+                whatsapp: '+91-9876543210',
+                linkedin: 'https://linkedin.com/in/priya-sharma-fashion'
+              },
+              address: {
+                city: 'Jaipur',
+                state: 'Rajasthan',
+                area: 'Malviya Nagar'
+              },
+              availability: {
+                mode: 'both',
+                timings: ['10:00 AM - 12:00 PM', '2:00 PM - 5:00 PM', '7:00 PM - 9:00 PM'],
+                timezone: 'IST'
+              },
+              languages: ['Hindi', 'English', 'Rajasthani'],
+              bio: 'Expert tailor with 8+ years of experience in custom clothing design and alterations. Started from home-based tailoring and now runs a successful boutique.',
+              achievements: [
+                'Built customer base of 200+ regular clients',
+                'Opened successful boutique within 2 years',
+                'Featured in local fashion magazines',
+                'Trained 45+ women in tailoring skills'
+              ],
+              testimonials: [
+                {
+                  name: 'Meera Patel',
+                  business: 'Home-based Tailoring',
+                  feedback: 'Priya ma\'am guided me from basic stitching to running my own tailoring business. Her practical advice was invaluable.',
+                  rating: 5
+                }
+              ]
+            }
+          ],
           dataSources: ['NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data']
         }
       ]);

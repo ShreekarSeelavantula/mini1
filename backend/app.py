@@ -19,17 +19,18 @@ resources_data = load_json_data('resources.json')
 financials_data = load_json_data('financials.json')
 case_studies_data = load_json_data('case_studies.json')
 workforce_data = load_json_data('workforce.json')
+mentors_data = load_json_data('mentors.json')
 
 class BusinessRecommender:
     def __init__(self):
         self.business_matrix = {
             # Skill-based business mapping with scoring
-            'tailoring': {'weight': 1.0, 'location_bonus': {'urban': 0.8, 'semi-urban': 1.0, 'rural': 0.9}, 'type': 'service'},
+            'tailoring': {'weight': 1.0, 'location_bonus': {'urban': 0.8, 'semi-urban': 1.0, 'rural': 0.9}, 'type': 'goods'},
             'cooking': {'weight': 0.9, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.7}, 'type': 'goods'},
             'handicrafts': {'weight': 0.8, 'location_bonus': {'urban': 0.7, 'semi-urban': 1.0, 'rural': 1.0}, 'type': 'goods'},
             'tutoring': {'weight': 1.0, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.8}, 'type': 'service'},
             'beauty_services': {'weight': 0.9, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.8, 'rural': 0.6}, 'type': 'service'},
-            'online_business': {'weight': 0.7, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.8}, 'type': 'service'},
+            'online_business': {'weight': 0.7, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.8}, 'type': 'both'},
             'food_business': {'weight': 0.8, 'location_bonus': {'urban': 0.9, 'semi-urban': 1.0, 'rural': 0.8}, 'type': 'goods'},
             'boutique': {'weight': 0.9, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.8, 'rural': 0.6}, 'type': 'goods'},
             'daycare': {'weight': 0.8, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.7}, 'type': 'service'},
@@ -96,7 +97,8 @@ class BusinessRecommender:
                     for business in businesses:
                         if business in self.business_matrix:
                             # Filter by business type preference
-                            if business_type and self.business_matrix[business]['type'] != business_type:
+                            business_type_match = self.business_matrix[business]['type']
+                            if business_type and business_type_match != 'both' and business_type_match != business_type:
                                 continue
                                 
                             base_score = self.business_matrix[business]['weight']
@@ -112,7 +114,7 @@ class BusinessRecommender:
         if not recommendations:
             default_businesses = ['tailoring', 'cooking', 'handicrafts', 'tutoring', 'beauty_services']
             if business_type:
-                default_businesses = [b for b in default_businesses if self.business_matrix[b]['type'] == business_type]
+                default_businesses = [b for b in default_businesses if self.business_matrix[b]['type'] == business_type or self.business_matrix[b]['type'] == 'both']
             
             for business in default_businesses[:3]:
                 recommendations[business] = 0.6
@@ -146,6 +148,12 @@ def get_recommendations():
                 ({'none': 0, '10th': 2, '12th': 4, 'graduate': 8, 'pg': 12}.get(education.lower(), 4))
             ))
             
+            # Get mentors for this business type
+            business_mentors = mentors_data.get(business, [])
+            # Filter mentors by business type preference
+            if business_type:
+                business_mentors = [m for m in business_mentors if m['businessType'] == business_type or m['businessType'] == 'both']
+            
             business_data = {
                 'name': business.replace('_', ' ').title(),
                 'id': business,
@@ -156,6 +164,7 @@ def get_recommendations():
                 'financials': financials_data.get(business, {}),
                 'caseStudies': case_studies_data.get(business, []),
                 'workforcePlan': workforce_data.get(business, {}),
+                'mentors': business_mentors,
                 'dataSources': ['NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data', 'Industry Reports']
             }
             response.append(business_data)

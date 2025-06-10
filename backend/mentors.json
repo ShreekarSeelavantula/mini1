@@ -1,0 +1,796 @@
+{
+  "tailoring": [
+    {
+      "id": "mentor_tailoring_001",
+      "name": "Priya Sharma",
+      "profilePic": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Tailoring", "Fashion Design", "Boutique Management"],
+      "businessType": "goods",
+      "experience": "8 years in tailoring and fashion design",
+      "rating": 4.8,
+      "totalMentees": 45,
+      "fees": {
+        "consultation": "₹500/hour",
+        "monthly": "₹3,000/month",
+        "package": "₹8,000 (3 months)"
+      },
+      "contact": {
+        "email": "priya.sharma.mentor@gmail.com",
+        "phone": "+91-9876543210",
+        "whatsapp": "+91-9876543210",
+        "linkedin": "https://linkedin.com/in/priya-sharma-fashion"
+      },
+      "address": {
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "area": "Malviya Nagar"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["10:00 AM - 12:00 PM", "2:00 PM - 5:00 PM", "7:00 PM - 9:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English", "Rajasthani"],
+      "bio": "Expert tailor with 8+ years of experience in custom clothing design and alterations. Started from home-based tailoring and now runs a successful boutique. Specializes in traditional Indian wear and contemporary fashion.",
+      "achievements": [
+        "Built customer base of 200+ regular clients",
+        "Opened successful boutique within 2 years",
+        "Featured in local fashion magazines",
+        "Trained 45+ women in tailoring skills"
+      ],
+      "testimonials": [
+        {
+          "name": "Meera Patel",
+          "business": "Home-based Tailoring",
+          "feedback": "Priya ma'am guided me from basic stitching to running my own tailoring business. Her practical advice on pricing and customer management was invaluable.",
+          "rating": 5
+        },
+        {
+          "name": "Sunita Devi",
+          "business": "Boutique Owner",
+          "feedback": "With Priya's mentorship, I learned not just tailoring but also business management. Now I have my own boutique with 3 employees.",
+          "rating": 5
+        }
+      ]
+    },
+    {
+      "id": "mentor_tailoring_002",
+      "name": "Kavita Reddy",
+      "profilePic": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Traditional Embroidery", "Designer Blouses", "Bridal Wear"],
+      "businessType": "goods",
+      "experience": "12 years in traditional and designer clothing",
+      "rating": 4.9,
+      "totalMentees": 67,
+      "fees": {
+        "consultation": "₹750/hour",
+        "monthly": "₹4,500/month",
+        "package": "₹12,000 (3 months)"
+      },
+      "contact": {
+        "email": "kavita.reddy.designs@gmail.com",
+        "phone": "+91-9123456789",
+        "whatsapp": "+91-9123456789",
+        "linkedin": "https://linkedin.com/in/kavita-reddy-designer"
+      },
+      "address": {
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "area": "Banjara Hills"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["9:00 AM - 11:00 AM", "3:00 PM - 6:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Telugu", "Hindi", "English"],
+      "bio": "Master craftsperson specializing in traditional South Indian embroidery and bridal wear. Known for intricate handwork and training women in premium tailoring techniques.",
+      "achievements": [
+        "Designed for 500+ brides",
+        "Expert in Aari and Zardozi embroidery",
+        "Runs premium design studio",
+        "Certified trainer for traditional crafts"
+      ],
+      "testimonials": [
+        {
+          "name": "Lakshmi Iyer",
+          "business": "Bridal Boutique",
+          "feedback": "Kavita ma'am taught me the art of bridal embroidery. Her techniques helped me establish a premium bridal wear business.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "cooking": [
+    {
+      "id": "mentor_cooking_001",
+      "name": "Sunita Devi",
+      "profilePic": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Tiffin Services", "Home Catering", "Food Business Setup"],
+      "businessType": "goods",
+      "experience": "6 years in food business and catering",
+      "rating": 4.7,
+      "totalMentees": 38,
+      "fees": {
+        "consultation": "₹400/hour",
+        "monthly": "₹2,500/month",
+        "package": "₹6,500 (3 months)"
+      },
+      "contact": {
+        "email": "sunita.tiffin.mentor@gmail.com",
+        "phone": "+91-9876512345",
+        "whatsapp": "+91-9876512345",
+        "linkedin": "https://linkedin.com/in/sunita-food-business"
+      },
+      "address": {
+        "city": "Delhi",
+        "state": "Delhi",
+        "area": "Lajpat Nagar"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["6:00 AM - 8:00 AM", "11:00 AM - 1:00 PM", "6:00 PM - 8:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English", "Punjabi"],
+      "bio": "Successful tiffin service entrepreneur serving 150+ customers daily. Expert in scaling home-based food businesses and maintaining food safety standards.",
+      "achievements": [
+        "Serves 150+ customers daily",
+        "FSSAI certified food business",
+        "Expanded to 3 office complexes",
+        "Trained 38+ women in food business"
+      ],
+      "testimonials": [
+        {
+          "name": "Geeta Sharma",
+          "business": "Tiffin Service",
+          "feedback": "Sunita ji helped me start my tiffin service from scratch. Her guidance on food safety and customer management was excellent.",
+          "rating": 5
+        },
+        {
+          "name": "Ritu Agarwal",
+          "business": "Home Catering",
+          "feedback": "With her mentorship, I learned how to price my food correctly and manage large orders efficiently.",
+          "rating": 4
+        }
+      ]
+    }
+  ],
+  "tutoring": [
+    {
+      "id": "mentor_tutoring_001",
+      "name": "Dr. Rashmi Gupta",
+      "profilePic": "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Mathematics Tutoring", "Coaching Center Management", "Online Teaching"],
+      "businessType": "service",
+      "experience": "10 years in education and tutoring business",
+      "rating": 4.9,
+      "totalMentees": 52,
+      "fees": {
+        "consultation": "₹600/hour",
+        "monthly": "₹3,500/month",
+        "package": "₹9,500 (3 months)"
+      },
+      "contact": {
+        "email": "dr.rashmi.education@gmail.com",
+        "phone": "+91-9123987654",
+        "whatsapp": "+91-9123987654",
+        "linkedin": "https://linkedin.com/in/dr-rashmi-gupta-education"
+      },
+      "address": {
+        "city": "Pune",
+        "state": "Maharashtra",
+        "area": "Koregaon Park"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["9:00 AM - 11:00 AM", "4:00 PM - 7:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English", "Marathi"],
+      "bio": "PhD in Mathematics with 10+ years of teaching experience. Runs a successful coaching center with 80+ students and specializes in innovative teaching methods.",
+      "achievements": [
+        "PhD in Mathematics",
+        "Coaching center with 80+ students",
+        "95% student success rate",
+        "Expert in online teaching platforms"
+      ],
+      "testimonials": [
+        {
+          "name": "Shalini Verma",
+          "business": "Online Tutoring",
+          "feedback": "Dr. Rashmi helped me transition from offline to online tutoring. Her strategies for student engagement are remarkable.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "beauty_services": [
+    {
+      "id": "mentor_beauty_001",
+      "name": "Pooja Agarwal",
+      "profilePic": "https://images.pexels.com/photos/1181424/pexels-photo-1181424.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Bridal Makeup", "Beauty Salon Management", "Freelance Beauty Services"],
+      "businessType": "service",
+      "experience": "7 years in beauty and makeup industry",
+      "rating": 4.8,
+      "totalMentees": 41,
+      "fees": {
+        "consultation": "₹700/hour",
+        "monthly": "₹4,000/month",
+        "package": "₹10,500 (3 months)"
+      },
+      "contact": {
+        "email": "pooja.beauty.mentor@gmail.com",
+        "phone": "+91-9876123456",
+        "whatsapp": "+91-9876123456",
+        "linkedin": "https://linkedin.com/in/pooja-agarwal-beauty"
+      },
+      "address": {
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "area": "Andheri West"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["10:00 AM - 12:00 PM", "3:00 PM - 6:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English", "Gujarati"],
+      "bio": "Professional makeup artist and beauty entrepreneur. Specializes in bridal makeup and has built a successful home salon business with regular clientele.",
+      "achievements": [
+        "Certified makeup artist",
+        "Home salon with 200+ clients",
+        "Destination wedding specialist",
+        "Featured in wedding magazines"
+      ],
+      "testimonials": [
+        {
+          "name": "Nisha Kapoor",
+          "business": "Beauty Salon",
+          "feedback": "Pooja taught me not just makeup techniques but also how to build a loyal client base. Her business advice was invaluable.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "online_business": [
+    {
+      "id": "mentor_online_001",
+      "name": "Ritu Agarwal",
+      "profilePic": "https://images.pexels.com/photos/1181562/pexels-photo-1181562.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["E-commerce", "Digital Marketing", "Online Store Management"],
+      "businessType": "both",
+      "experience": "5 years in online business and digital marketing",
+      "rating": 4.6,
+      "totalMentees": 33,
+      "fees": {
+        "consultation": "₹800/hour",
+        "monthly": "₹5,000/month",
+        "package": "₹13,000 (3 months)"
+      },
+      "contact": {
+        "email": "ritu.digital.mentor@gmail.com",
+        "phone": "+91-9123456780",
+        "whatsapp": "+91-9123456780",
+        "linkedin": "https://linkedin.com/in/ritu-agarwal-digital"
+      },
+      "address": {
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "area": "Koramangala"
+      },
+      "availability": {
+        "mode": "online",
+        "timings": ["10:00 AM - 12:00 PM", "7:00 PM - 9:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English", "Kannada"],
+      "bio": "Digital marketing expert and successful online entrepreneur. Built a ₹2 lakh monthly revenue online jewelry business and helps others establish their digital presence.",
+      "achievements": [
+        "₹2 lakh monthly online sales",
+        "Google Ads certified",
+        "Social media marketing expert",
+        "International customer base"
+      ],
+      "testimonials": [
+        {
+          "name": "Deepika Joshi",
+          "business": "Online Courses",
+          "feedback": "Ritu's guidance helped me build my online course platform. Her digital marketing strategies increased my enrollment by 300%.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "handicrafts": [
+    {
+      "id": "mentor_handicrafts_001",
+      "name": "Rekha Kumari",
+      "profilePic": "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Traditional Embroidery", "Handicraft Business", "Export Marketing"],
+      "businessType": "goods",
+      "experience": "9 years in handicrafts and traditional arts",
+      "rating": 4.7,
+      "totalMentees": 29,
+      "fees": {
+        "consultation": "₹450/hour",
+        "monthly": "₹2,800/month",
+        "package": "₹7,500 (3 months)"
+      },
+      "contact": {
+        "email": "rekha.handicrafts@gmail.com",
+        "phone": "+91-9876234567",
+        "whatsapp": "+91-9876234567",
+        "linkedin": "https://linkedin.com/in/rekha-kumari-crafts"
+      },
+      "address": {
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "area": "City Palace Road"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["9:00 AM - 11:00 AM", "2:00 PM - 5:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English", "Rajasthani"],
+      "bio": "Master artisan specializing in traditional Rajasthani embroidery and handicrafts. Successfully established international market presence and trains women in traditional art forms.",
+      "achievements": [
+        "International customer base",
+        "Traditional art preservation",
+        "Export business expertise",
+        "Featured in craft exhibitions"
+      ],
+      "testimonials": [
+        {
+          "name": "Anita Singh",
+          "business": "Handicraft Export",
+          "feedback": "Rekha ji taught me traditional techniques and helped me reach international markets. My handicraft business now exports globally.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "food_business": [
+    {
+      "id": "mentor_food_001",
+      "name": "Lakshmi Iyer",
+      "profilePic": "https://images.pexels.com/photos/1181717/pexels-photo-1181717.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Restaurant Management", "South Indian Cuisine", "Food Business Scaling"],
+      "businessType": "goods",
+      "experience": "8 years in restaurant and food business",
+      "rating": 4.8,
+      "totalMentees": 35,
+      "fees": {
+        "consultation": "₹650/hour",
+        "monthly": "₹4,200/month",
+        "package": "₹11,000 (3 months)"
+      },
+      "contact": {
+        "email": "lakshmi.restaurant.mentor@gmail.com",
+        "phone": "+91-9123789456",
+        "whatsapp": "+91-9123789456",
+        "linkedin": "https://linkedin.com/in/lakshmi-iyer-restaurant"
+      },
+      "address": {
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "area": "T. Nagar"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["8:00 AM - 10:00 AM", "3:00 PM - 5:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Tamil", "Hindi", "English"],
+      "bio": "Successful restaurant owner serving 200+ customers daily. Expert in South Indian cuisine and scaling food businesses from small setups to established restaurants.",
+      "achievements": [
+        "Restaurant serves 200+ daily customers",
+        "Plans for second location",
+        "FSSAI compliance expert",
+        "Traditional recipe preservation"
+      ],
+      "testimonials": [
+        {
+          "name": "Geeta Sharma",
+          "business": "Sweet Shop",
+          "feedback": "Lakshmi ma'am helped me scale my sweet business from home kitchen to commercial setup. Her operational guidance was excellent.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "boutique": [
+    {
+      "id": "mentor_boutique_001",
+      "name": "Simran Kaur",
+      "profilePic": "https://images.pexels.com/photos/1181605/pexels-photo-1181605.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Fashion Retail", "Boutique Management", "Ethnic Wear Business"],
+      "businessType": "goods",
+      "experience": "6 years in fashion retail and boutique business",
+      "rating": 4.9,
+      "totalMentees": 28,
+      "fees": {
+        "consultation": "₹750/hour",
+        "monthly": "₹4,800/month",
+        "package": "₹12,500 (3 months)"
+      },
+      "contact": {
+        "email": "simran.boutique.mentor@gmail.com",
+        "phone": "+91-9876345678",
+        "whatsapp": "+91-9876345678",
+        "linkedin": "https://linkedin.com/in/simran-kaur-boutique"
+      },
+      "address": {
+        "city": "Amritsar",
+        "state": "Punjab",
+        "area": "Hall Bazaar"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["10:00 AM - 12:00 PM", "4:00 PM - 6:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Punjabi", "Hindi", "English"],
+      "bio": "Fashion entrepreneur specializing in ethnic wear and boutique management. Successfully built a boutique business serving customers across North India with online presence.",
+      "achievements": [
+        "Boutique with online presence",
+        "Serves customers across North India",
+        "₹1.8 lakh monthly revenue",
+        "Expert in ethnic wear trends"
+      ],
+      "testimonials": [
+        {
+          "name": "Anjali Mehta",
+          "business": "Designer Boutique",
+          "feedback": "Simran helped me understand fashion trends and customer preferences. My boutique now has a loyal customer base.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "daycare": [
+    {
+      "id": "mentor_daycare_001",
+      "name": "Mamta Gupta",
+      "profilePic": "https://images.pexels.com/photos/1181721/pexels-photo-1181721.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Daycare Management", "Child Development", "Early Education"],
+      "businessType": "service",
+      "experience": "7 years in childcare and early education",
+      "rating": 4.9,
+      "totalMentees": 22,
+      "fees": {
+        "consultation": "₹550/hour",
+        "monthly": "₹3,800/month",
+        "package": "₹10,000 (3 months)"
+      },
+      "contact": {
+        "email": "mamta.daycare.mentor@gmail.com",
+        "phone": "+91-9123567890",
+        "whatsapp": "+91-9123567890",
+        "linkedin": "https://linkedin.com/in/mamta-gupta-daycare"
+      },
+      "address": {
+        "city": "Gurgaon",
+        "state": "Haryana",
+        "area": "Sector 14"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["9:00 AM - 11:00 AM", "2:00 PM - 4:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English"],
+      "bio": "Experienced daycare operator caring for 25+ children with focus on early childhood education and nutritious meal planning. Expert in licensing and safety protocols.",
+      "achievements": [
+        "Licensed daycare for 25+ children",
+        "Child development certified",
+        "Safety protocol expert",
+        "Parent satisfaction rate 98%"
+      ],
+      "testimonials": [
+        {
+          "name": "Shanti Devi",
+          "business": "Daycare Center",
+          "feedback": "Mamta ji guided me through licensing process and helped set up safety protocols. My daycare now serves 40+ families.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "event_planning": [
+    {
+      "id": "mentor_event_001",
+      "name": "Neha Agarwal",
+      "profilePic": "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Wedding Planning", "Event Management", "Vendor Coordination"],
+      "businessType": "service",
+      "experience": "9 years in event planning and wedding management",
+      "rating": 4.8,
+      "totalMentees": 31,
+      "fees": {
+        "consultation": "₹900/hour",
+        "monthly": "₹5,500/month",
+        "package": "₹15,000 (3 months)"
+      },
+      "contact": {
+        "email": "neha.events.mentor@gmail.com",
+        "phone": "+91-9876456789",
+        "whatsapp": "+91-9876456789",
+        "linkedin": "https://linkedin.com/in/neha-agarwal-events"
+      },
+      "address": {
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "area": "C-Scheme"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["11:00 AM - 1:00 PM", "5:00 PM - 7:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English", "Rajasthani"],
+      "bio": "Professional event planner specializing in traditional Rajasthani weddings and cultural events. Plans 15+ weddings annually with a team of 5 professionals.",
+      "achievements": [
+        "Plans 15+ weddings annually",
+        "Team of 5 professionals",
+        "₹3-4 lakh per event revenue",
+        "Traditional Rajasthani specialist"
+      ],
+      "testimonials": [
+        {
+          "name": "Priyanka Sharma",
+          "business": "Corporate Events",
+          "feedback": "Neha's expertise in vendor management and event coordination helped me establish my corporate event planning business.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "jewelry_making": [
+    {
+      "id": "mentor_jewelry_001",
+      "name": "Kiran Patel",
+      "profilePic": "https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Silver Jewelry", "Traditional Techniques", "Online Jewelry Business"],
+      "businessType": "goods",
+      "experience": "6 years in jewelry making and design",
+      "rating": 4.7,
+      "totalMentees": 26,
+      "fees": {
+        "consultation": "₹600/hour",
+        "monthly": "₹3,600/month",
+        "package": "₹9,800 (3 months)"
+      },
+      "contact": {
+        "email": "kiran.jewelry.mentor@gmail.com",
+        "phone": "+91-9123678901",
+        "whatsapp": "+91-9123678901",
+        "linkedin": "https://linkedin.com/in/kiran-patel-jewelry"
+      },
+      "address": {
+        "city": "Rajkot",
+        "state": "Gujarat",
+        "area": "Kalawad Road"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["10:00 AM - 12:00 PM", "3:00 PM - 5:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Gujarati", "Hindi", "English"],
+      "bio": "Master jewelry artisan specializing in traditional silver jewelry with semi-precious stones. Successfully established online presence with international customers.",
+      "achievements": [
+        "International online customers",
+        "Traditional technique expert",
+        "₹48,000 monthly revenue",
+        "Craft preservation advocate"
+      ],
+      "testimonials": [
+        {
+          "name": "Riya Jain",
+          "business": "Custom Jewelry",
+          "feedback": "Kiran ma'am taught me traditional jewelry making techniques and helped me build an online customer base.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "photography": [
+    {
+      "id": "mentor_photography_001",
+      "name": "Sneha Reddy",
+      "profilePic": "https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Wedding Photography", "Portrait Photography", "Photography Business"],
+      "businessType": "service",
+      "experience": "8 years in professional photography",
+      "rating": 4.8,
+      "totalMentees": 34,
+      "fees": {
+        "consultation": "₹800/hour",
+        "monthly": "₹4,500/month",
+        "package": "₹12,000 (3 months)"
+      },
+      "contact": {
+        "email": "sneha.photography.mentor@gmail.com",
+        "phone": "+91-9876567890",
+        "whatsapp": "+91-9876567890",
+        "linkedin": "https://linkedin.com/in/sneha-reddy-photography"
+      },
+      "address": {
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "area": "Jubilee Hills"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["9:00 AM - 11:00 AM", "6:00 PM - 8:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Telugu", "Hindi", "English"],
+      "bio": "Professional photographer specializing in weddings and portraits. Books 20+ events monthly and has built a strong portfolio with premium pricing strategies.",
+      "achievements": [
+        "20+ events monthly",
+        "Premium pricing specialist",
+        "₹1.2 lakh monthly revenue",
+        "Award-winning portfolio"
+      ],
+      "testimonials": [
+        {
+          "name": "Kavya Nair",
+          "business": "Portrait Photography",
+          "feedback": "Sneha helped me transition from hobby to professional photography. Her business strategies increased my bookings significantly.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "catering": [
+    {
+      "id": "mentor_catering_001",
+      "name": "Usha Devi",
+      "profilePic": "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Event Catering", "Traditional Cuisine", "Large Scale Cooking"],
+      "businessType": "service",
+      "experience": "7 years in catering and event food services",
+      "rating": 4.6,
+      "totalMentees": 27,
+      "fees": {
+        "consultation": "₹500/hour",
+        "monthly": "₹3,200/month",
+        "package": "₹8,500 (3 months)"
+      },
+      "contact": {
+        "email": "usha.catering.mentor@gmail.com",
+        "phone": "+91-9123789012",
+        "whatsapp": "+91-9123789012",
+        "linkedin": "https://linkedin.com/in/usha-devi-catering"
+      },
+      "address": {
+        "city": "Bhopal",
+        "state": "Madhya Pradesh",
+        "area": "New Market"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["7:00 AM - 9:00 AM", "2:00 PM - 4:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English"],
+      "bio": "Experienced caterer specializing in traditional vegetarian cuisine for events and functions. Caters to 25+ events monthly with a team of 4 professionals.",
+      "achievements": [
+        "25+ events monthly",
+        "Team of 4 professionals",
+        "₹85,000 monthly revenue",
+        "Traditional cuisine specialist"
+      ],
+      "testimonials": [
+        {
+          "name": "Riya Jain",
+          "business": "Home Catering",
+          "feedback": "Usha ji taught me large-scale cooking techniques and event management. My catering business now handles big functions.",
+          "rating": 4
+        }
+      ]
+    }
+  ],
+  "home_bakery": [
+    {
+      "id": "mentor_bakery_001",
+      "name": "Riya Jain",
+      "profilePic": "https://images.pexels.com/photos/1181697/pexels-photo-1181697.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Custom Cakes", "Home Bakery Setup", "Cake Decorating"],
+      "businessType": "goods",
+      "experience": "5 years in home bakery and cake decorating",
+      "rating": 4.7,
+      "totalMentees": 23,
+      "fees": {
+        "consultation": "₹450/hour",
+        "monthly": "₹2,800/month",
+        "package": "₹7,200 (3 months)"
+      },
+      "contact": {
+        "email": "riya.bakery.mentor@gmail.com",
+        "phone": "+91-9876678901",
+        "whatsapp": "+91-9876678901",
+        "linkedin": "https://linkedin.com/in/riya-jain-bakery"
+      },
+      "address": {
+        "city": "Indore",
+        "state": "Madhya Pradesh",
+        "area": "Vijay Nagar"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["10:00 AM - 12:00 PM", "4:00 PM - 6:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Hindi", "English"],
+      "bio": "Creative baker specializing in custom cake designs and home bakery operations. Fulfills 40+ cake orders monthly with focus on unique designs and natural ingredients.",
+      "achievements": [
+        "40+ cake orders monthly",
+        "Custom design specialist",
+        "₹52,000 monthly revenue",
+        "Natural ingredients advocate"
+      ],
+      "testimonials": [
+        {
+          "name": "Kavya Nair",
+          "business": "Custom Cakes",
+          "feedback": "Riya taught me advanced cake decorating techniques and helped me price my products correctly for better profits.",
+          "rating": 5
+        }
+      ]
+    }
+  ],
+  "consulting": [
+    {
+      "id": "mentor_consulting_001",
+      "name": "Kavya Nair",
+      "profilePic": "https://images.pexels.com/photos/1181712/pexels-photo-1181712.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "specialization": ["Business Consulting", "Women Entrepreneurship", "Strategic Planning"],
+      "businessType": "service",
+      "experience": "8 years in business consulting and strategy",
+      "rating": 4.9,
+      "totalMentees": 45,
+      "fees": {
+        "consultation": "₹1000/hour",
+        "monthly": "₹6,000/month",
+        "package": "₹16,000 (3 months)"
+      },
+      "contact": {
+        "email": "kavya.business.mentor@gmail.com",
+        "phone": "+91-9123890123",
+        "whatsapp": "+91-9123890123",
+        "linkedin": "https://linkedin.com/in/kavya-nair-consulting"
+      },
+      "address": {
+        "city": "Kochi",
+        "state": "Kerala",
+        "area": "Marine Drive"
+      },
+      "availability": {
+        "mode": "both",
+        "timings": ["9:00 AM - 11:00 AM", "3:00 PM - 5:00 PM"],
+        "timezone": "IST"
+      },
+      "languages": ["Malayalam", "Hindi", "English"],
+      "bio": "MBA with 8+ years of corporate and consulting experience. Specializes in helping women entrepreneurs with business planning, strategy, and scaling operations.",
+      "achievements": [
+        "MBA in Business Strategy",
+        "Consults for 15+ businesses monthly",
+        "₹78,000 monthly revenue",
+        "Women entrepreneurship advocate"
+      ],
+      "testimonials": [
+        {
+          "name": "Priya Sharma",
+          "business": "Fashion Consulting",
+          "feedback": "Kavya's strategic guidance helped me scale my business from home-based to commercial setup. Her business planning expertise is exceptional.",
+          "rating": 5
+        }
+      ]
+    }
+  ]
+}

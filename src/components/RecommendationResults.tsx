@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, TrendingUp, DollarSign, Clock, ExternalLink, BookOpen, Target, Users, Star, Award, MapPin, Calendar, Briefcase, CheckCircle } from 'lucide-react';
+import { ArrowLeft, TrendingUp, DollarSign, Clock, ExternalLink, BookOpen, Target, Users, Star, Award, MapPin, Calendar, Briefcase, CheckCircle, Phone, Mail, MessageCircle, Linkedin, Globe, User } from 'lucide-react';
 import { Recommendation } from '../types';
 
 interface RecommendationResultsProps {
@@ -11,7 +11,35 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
   recommendations, 
   onReset 
 }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'resources' | 'financials' | 'workforce' | 'stories'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'resources' | 'financials' | 'workforce' | 'stories' | 'mentors'>('overview');
+
+  const handleContactClick = (type: string, value: string) => {
+    switch (type) {
+      case 'email':
+        window.open(`mailto:${value}`, '_blank');
+        break;
+      case 'phone':
+        window.open(`tel:${value}`, '_blank');
+        break;
+      case 'whatsapp':
+        window.open(`https://wa.me/${value.replace(/[^0-9]/g, '')}`, '_blank');
+        break;
+      case 'linkedin':
+        window.open(value, '_blank');
+        break;
+      default:
+        break;
+    }
+  };
+
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <Star
+        key={i}
+        className={`h-4 w-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+      />
+    ));
+  };
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -38,6 +66,7 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
           {[
             { key: 'overview', label: 'Overview', icon: Target },
             { key: 'stories', label: 'Success Stories', icon: Award },
+            { key: 'mentors', label: 'Expert Mentors', icon: User },
             { key: 'resources', label: 'Learning', icon: BookOpen },
             { key: 'financials', label: 'Financial Plan', icon: DollarSign },
             { key: 'workforce', label: 'Team Planning', icon: Users }
@@ -186,6 +215,205 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'mentors' && (
+                <div>
+                  <h4 className="font-semibold text-gray-800 mb-4 flex items-center">
+                    <User className="h-5 w-5 text-purple-600 mr-2" />
+                    Expert Mentors for {recommendation.name}
+                  </h4>
+                  <div className="space-y-6">
+                    {recommendation.mentors.map((mentor, idx) => (
+                      <div key={idx} className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
+                        <div className="flex flex-col lg:flex-row gap-6">
+                          {/* Mentor Profile */}
+                          <div className="flex-shrink-0">
+                            <img
+                              src={mentor.profilePic}
+                              alt={mentor.name}
+                              className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
+                            />
+                          </div>
+                          
+                          {/* Mentor Details */}
+                          <div className="flex-1 space-y-4">
+                            {/* Header */}
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                              <div>
+                                <h5 className="text-xl font-bold text-gray-800">{mentor.name}</h5>
+                                <div className="flex items-center space-x-2 mt-1">
+                                  <div className="flex">{renderStars(mentor.rating)}</div>
+                                  <span className="text-sm text-gray-600">({mentor.rating}/5)</span>
+                                  <span className="text-sm text-gray-500">• {mentor.totalMentees} mentees</span>
+                                </div>
+                              </div>
+                              <div className="mt-2 sm:mt-0">
+                                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                                  mentor.businessType === 'goods' ? 'bg-blue-100 text-blue-800' :
+                                  mentor.businessType === 'service' ? 'bg-green-100 text-green-800' :
+                                  'bg-purple-100 text-purple-800'
+                                }`}>
+                                  {mentor.businessType === 'both' ? 'Goods & Service' : mentor.businessType.charAt(0).toUpperCase() + mentor.businessType.slice(1)} Expert
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Bio */}
+                            <p className="text-gray-700 leading-relaxed">{mentor.bio}</p>
+
+                            {/* Specializations */}
+                            <div>
+                              <h6 className="font-medium text-gray-800 mb-2">Specializations:</h6>
+                              <div className="flex flex-wrap gap-2">
+                                {mentor.specialization.map((spec, specIdx) => (
+                                  <span key={specIdx} className="px-3 py-1 bg-white rounded-full text-sm text-purple-700 border border-purple-200">
+                                    {spec}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Contact & Availability */}
+                            <div className="grid md:grid-cols-2 gap-4">
+                              {/* Contact Information */}
+                              <div className="bg-white rounded-lg p-4 border border-purple-200">
+                                <h6 className="font-medium text-gray-800 mb-3">Contact Information</h6>
+                                <div className="space-y-2">
+                                  <button
+                                    onClick={() => handleContactClick('email', mentor.contact.email)}
+                                    className="flex items-center space-x-2 text-sm text-gray-600 hover:text-purple-600 transition-colors w-full text-left"
+                                  >
+                                    <Mail className="h-4 w-4" />
+                                    <span>{mentor.contact.email}</span>
+                                  </button>
+                                  <button
+                                    onClick={() => handleContactClick('phone', mentor.contact.phone)}
+                                    className="flex items-center space-x-2 text-sm text-gray-600 hover:text-purple-600 transition-colors w-full text-left"
+                                  >
+                                    <Phone className="h-4 w-4" />
+                                    <span>{mentor.contact.phone}</span>
+                                  </button>
+                                  {mentor.contact.whatsapp && (
+                                    <button
+                                      onClick={() => handleContactClick('whatsapp', mentor.contact.whatsapp)}
+                                      className="flex items-center space-x-2 text-sm text-gray-600 hover:text-green-600 transition-colors w-full text-left"
+                                    >
+                                      <MessageCircle className="h-4 w-4" />
+                                      <span>WhatsApp</span>
+                                    </button>
+                                  )}
+                                  {mentor.contact.linkedin && (
+                                    <button
+                                      onClick={() => handleContactClick('linkedin', mentor.contact.linkedin)}
+                                      className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 transition-colors w-full text-left"
+                                    >
+                                      <Linkedin className="h-4 w-4" />
+                                      <span>LinkedIn Profile</span>
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* Availability & Fees */}
+                              <div className="bg-white rounded-lg p-4 border border-purple-200">
+                                <h6 className="font-medium text-gray-800 mb-3">Availability & Fees</h6>
+                                <div className="space-y-2 text-sm">
+                                  <div className="flex items-center space-x-2">
+                                    <Globe className="h-4 w-4 text-gray-500" />
+                                    <span className="capitalize">{mentor.availability.mode}</span>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <MapPin className="h-4 w-4 text-gray-500" />
+                                    <span>{mentor.address.city}, {mentor.address.state}</span>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <Clock className="h-4 w-4 text-gray-500" />
+                                    <span>{mentor.availability.timings.join(', ')}</span>
+                                  </div>
+                                  <div className="mt-3 pt-3 border-t border-gray-200">
+                                    <div className="text-xs text-gray-600 mb-1">Consultation Fees:</div>
+                                    <div className="font-medium text-purple-600">{mentor.fees.consultation}</div>
+                                    <div className="text-xs text-gray-600 mt-1">Monthly: {mentor.fees.monthly}</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Achievements */}
+                            <div className="bg-white rounded-lg p-4 border border-purple-200">
+                              <h6 className="font-medium text-gray-800 mb-2">Key Achievements</h6>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {mentor.achievements.map((achievement, achIdx) => (
+                                  <div key={achIdx} className="flex items-center space-x-2">
+                                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                                    <span className="text-sm text-gray-700">{achievement}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Testimonials */}
+                            {mentor.testimonials.length > 0 && (
+                              <div className="bg-white rounded-lg p-4 border border-purple-200">
+                                <h6 className="font-medium text-gray-800 mb-3">What Mentees Say</h6>
+                                <div className="space-y-3">
+                                  {mentor.testimonials.map((testimonial, testIdx) => (
+                                    <div key={testIdx} className="bg-gray-50 rounded-lg p-3">
+                                      <div className="flex items-center justify-between mb-2">
+                                        <div>
+                                          <span className="font-medium text-sm text-gray-800">{testimonial.name}</span>
+                                          <span className="text-xs text-gray-600 ml-2">• {testimonial.business}</span>
+                                        </div>
+                                        <div className="flex">{renderStars(testimonial.rating)}</div>
+                                      </div>
+                                      <p className="text-sm text-gray-700 italic">"{testimonial.feedback}"</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Action Buttons */}
+                            <div className="flex flex-wrap gap-3 pt-4">
+                              <button
+                                onClick={() => handleContactClick('email', mentor.contact.email)}
+                                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:shadow-lg transition-all duration-200"
+                              >
+                                <Mail className="h-4 w-4" />
+                                <span>Send Email</span>
+                              </button>
+                              <button
+                                onClick={() => handleContactClick('phone', mentor.contact.phone)}
+                                className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                              >
+                                <Phone className="h-4 w-4" />
+                                <span>Call Now</span>
+                              </button>
+                              {mentor.contact.whatsapp && (
+                                <button
+                                  onClick={() => handleContactClick('whatsapp', mentor.contact.whatsapp)}
+                                  className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                                >
+                                  <MessageCircle className="h-4 w-4" />
+                                  <span>WhatsApp</span>
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    
+                    {recommendation.mentors.length === 0 && (
+                      <div className="text-center py-8 text-gray-500">
+                        <User className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+                        <p>No mentors available for this business type at the moment.</p>
+                        <p className="text-sm mt-2">Check back later or contact us for mentor recommendations.</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
