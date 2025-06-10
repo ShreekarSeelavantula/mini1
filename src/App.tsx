@@ -12,7 +12,7 @@ function App() {
   const handleFormSubmit = async (formData: UserInput) => {
     setLoading(true);
     try {
-      const response = await fetch('/api/recommend', {
+      const response = await fetch('http://localhost:5000/api/recommend', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
