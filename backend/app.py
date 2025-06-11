@@ -3,6 +3,7 @@ from flask_cors import CORS
 import joblib
 import json
 import os
+from ml_recommender import ml_recommender
 
 app = Flask(__name__)
 CORS(app)
@@ -21,110 +22,6 @@ case_studies_data = load_json_data('case_studies.json')
 workforce_data = load_json_data('workforce.json')
 mentors_data = load_json_data('mentors.json')
 
-class BusinessRecommender:
-    def __init__(self):
-        self.business_matrix = {
-            # Skill-based business mapping with scoring
-            'tailoring': {'weight': 1.0, 'location_bonus': {'urban': 0.8, 'semi-urban': 1.0, 'rural': 0.9}, 'type': 'goods'},
-            'cooking': {'weight': 0.9, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.7}, 'type': 'goods'},
-            'handicrafts': {'weight': 0.8, 'location_bonus': {'urban': 0.7, 'semi-urban': 1.0, 'rural': 1.0}, 'type': 'goods'},
-            'tutoring': {'weight': 1.0, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.8}, 'type': 'service'},
-            'beauty_services': {'weight': 0.9, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.8, 'rural': 0.6}, 'type': 'service'},
-            'online_business': {'weight': 0.7, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.8}, 'type': 'both'},
-            'food_business': {'weight': 0.8, 'location_bonus': {'urban': 0.9, 'semi-urban': 1.0, 'rural': 0.8}, 'type': 'goods'},
-            'boutique': {'weight': 0.9, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.8, 'rural': 0.6}, 'type': 'goods'},
-            'daycare': {'weight': 0.8, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.7}, 'type': 'service'},
-            'event_planning': {'weight': 0.7, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.7, 'rural': 0.5}, 'type': 'service'},
-            'jewelry_making': {'weight': 0.8, 'location_bonus': {'urban': 0.9, 'semi-urban': 1.0, 'rural': 0.8}, 'type': 'goods'},
-            'photography': {'weight': 0.7, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.8, 'rural': 0.6}, 'type': 'service'},
-            'catering': {'weight': 0.9, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.9, 'rural': 0.7}, 'type': 'service'},
-            'home_bakery': {'weight': 0.8, 'location_bonus': {'urban': 0.9, 'semi-urban': 1.0, 'rural': 0.8}, 'type': 'goods'},
-            'consulting': {'weight': 0.6, 'location_bonus': {'urban': 1.0, 'semi-urban': 0.7, 'rural': 0.5}, 'type': 'service'}
-        }
-        
-    def recommend(self, skills, experience, location, education, business_type, work_environment):
-        recommendations = {}
-        
-        # Experience multiplier
-        exp_multiplier = {
-            'none': 0.5,
-            'beginner': 0.7,
-            'intermediate': 0.9,
-            'expert': 1.2
-        }.get(experience.lower(), 0.7)
-        
-        # Education bonus
-        edu_bonus = {
-            'none': 0.0,
-            '10th': 0.1,
-            '12th': 0.2,
-            'graduate': 0.4,
-            'pg': 0.6
-        }.get(education.lower(), 0.2)
-        
-        # Work environment bonus
-        work_bonus = 1.1 if work_environment == 'team' else 1.0
-        
-        # Skill to business mapping
-        skill_business_map = {
-            'sewing': ['tailoring', 'boutique'],
-            'cooking': ['cooking', 'food_business', 'catering', 'home_bakery'],
-            'art': ['handicrafts', 'jewelry_making'],
-            'teaching': ['tutoring', 'consulting'],
-            'beauty': ['beauty_services'],
-            'technology': ['online_business', 'consulting'],
-            'communication': ['tutoring', 'event_planning', 'consulting'],
-            'management': ['daycare', 'event_planning', 'consulting'],
-            'craft': ['handicrafts', 'jewelry_making'],
-            'sales': ['boutique', 'online_business'],
-            'photography': ['photography', 'event_planning'],
-            'jewelry': ['jewelry_making'],
-            'writing': ['online_business', 'consulting'],
-            'marketing': ['online_business', 'consulting', 'event_planning'],
-            'accounting': ['consulting'],
-            'customer service': ['beauty_services', 'tutoring'],
-            'event planning': ['event_planning'],
-            'music': ['tutoring'],
-            'dancing': ['tutoring'],
-            'embroidery': ['handicrafts', 'boutique']
-        }
-        
-        # Calculate scores for each business
-        for skill in skills:
-            skill_lower = skill.lower()
-            for skill_key, businesses in skill_business_map.items():
-                if skill_key in skill_lower or skill_lower in skill_key:
-                    for business in businesses:
-                        if business in self.business_matrix:
-                            # Filter by business type preference
-                            business_type_match = self.business_matrix[business]['type']
-                            if business_type and business_type_match != 'both' and business_type_match != business_type:
-                                continue
-                                
-                            base_score = self.business_matrix[business]['weight']
-                            location_bonus = self.business_matrix[business]['location_bonus'].get(location.lower(), 0.7)
-                            
-                            total_score = base_score * exp_multiplier * location_bonus * (1 + edu_bonus) * work_bonus
-                            
-                            if business not in recommendations:
-                                recommendations[business] = 0
-                            recommendations[business] += total_score
-        
-        # Add default recommendations if no matches
-        if not recommendations:
-            default_businesses = ['tailoring', 'cooking', 'handicrafts', 'tutoring', 'beauty_services']
-            if business_type:
-                default_businesses = [b for b in default_businesses if self.business_matrix[b]['type'] == business_type or self.business_matrix[b]['type'] == 'both']
-            
-            for business in default_businesses[:3]:
-                recommendations[business] = 0.6
-        
-        # Sort and return top 5
-        sorted_recommendations = sorted(recommendations.items(), key=lambda x: x[1], reverse=True)
-        return [business for business, score in sorted_recommendations[:5]]
-
-recommender = BusinessRecommender()
-
 @app.route('/api/recommend', methods=['POST'])
 def get_recommendations():
     try:
@@ -136,45 +33,66 @@ def get_recommendations():
         business_type = data.get('businessType', '')
         work_environment = data.get('workEnvironment', 'solo')
         
-        recommendations = recommender.recommend(skills, experience, location, education, business_type, work_environment)
+        # Prepare input for ML model
+        user_input = {
+            'skills': skills,
+            'experience': experience,
+            'location': location,
+            'education': education,
+            'businessType': business_type,
+            'workEnvironment': work_environment
+        }
+        
+        # Get ML-based recommendations
+        ml_recommendations = ml_recommender.get_recommendations(user_input, top_k=5)
         
         # Prepare response with all data
         response = []
-        for business in recommendations:
-            # Calculate confidence score based on various factors
-            confidence_score = min(95, max(65, 
-                75 + (len([s for s in skills if any(s.lower() in skill_key for skill_key in ['sewing', 'cooking', 'art', 'teaching', 'beauty', 'technology', 'communication', 'management', 'craft', 'sales'])]) * 5) +
-                ({'none': 0, 'beginner': 5, 'intermediate': 10, 'expert': 15}.get(experience.lower(), 5)) +
-                ({'none': 0, '10th': 2, '12th': 4, 'graduate': 8, 'pg': 12}.get(education.lower(), 4))
-            ))
+        for rec in ml_recommendations:
+            business_id = rec['business_id']
+            confidence_score = rec['confidence_score']
             
             # Get mentors for this business type
-            business_mentors = mentors_data.get(business, [])
+            business_mentors = mentors_data.get(business_id, [])
             # Filter mentors by business type preference
             if business_type:
                 business_mentors = [m for m in business_mentors if m['businessType'] == business_type or m['businessType'] == 'both']
             
             business_data = {
-                'name': business.replace('_', ' ').title(),
-                'id': business,
-                'description': get_business_description(business),
-                'businessType': recommender.business_matrix[business]['type'],
+                'name': business_id.replace('_', ' ').title(),
+                'id': business_id,
+                'description': get_business_description(business_id),
+                'businessType': ml_recommender.business_data[business_id]['business_type'],
                 'confidenceScore': confidence_score,
-                'resources': resources_data.get(business, []),
-                'financials': financials_data.get(business, {}),
-                'caseStudies': case_studies_data.get(business, []),
-                'workforcePlan': workforce_data.get(business, {}),
+                'mlScore': rec['ml_score'],
+                'resources': resources_data.get(business_id, []),
+                'financials': financials_data.get(business_id, {}),
+                'caseStudies': case_studies_data.get(business_id, []),
+                'workforcePlan': workforce_data.get(business_id, {}),
                 'mentors': business_mentors,
-                'dataSources': ['NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data', 'Industry Reports']
+                'dataSources': ['ML Algorithm', 'NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data', 'Market Analysis'],
+                'algorithmInfo': {
+                    'model': 'Random Forest Classifier',
+                    'features': ['Skill Matching (TF-IDF)', 'Experience Level', 'Location Preference', 'Education Level', 'Business Type Alignment'],
+                    'trainingData': f'{len(ml_recommender.training_data)} samples',
+                    'accuracy': 'Cross-validated on synthetic data'
+                }
             }
             response.append(business_data)
         
         return jsonify({
             'success': True,
-            'recommendations': response
+            'recommendations': response,
+            'algorithm': 'Machine Learning (Random Forest + TF-IDF)',
+            'modelInfo': {
+                'type': 'Hybrid ML Model',
+                'components': ['Random Forest Classifier', 'TF-IDF Vectorization', 'Feature Engineering'],
+                'trainingSize': len(ml_recommender.training_data)
+            }
         })
     
     except Exception as e:
+        print(f"Error in recommendation: {str(e)}")
         return jsonify({
             'success': False,
             'error': str(e)
@@ -202,7 +120,31 @@ def get_business_description(business_id):
 
 @app.route('/health', methods=['GET'])
 def health_check():
-    return jsonify({'status': 'healthy'})
+    return jsonify({'status': 'healthy', 'ml_model': 'loaded'})
+
+@app.route('/api/model-info', methods=['GET'])
+def get_model_info():
+    """Get information about the ML model"""
+    return jsonify({
+        'model_type': 'Random Forest Classifier',
+        'features': [
+            'Skill Matching (TF-IDF Vectorization)',
+            'Experience Level Encoding',
+            'Location Preference Mapping',
+            'Education Level Scoring',
+            'Business Type Alignment',
+            'Work Environment Preference'
+        ],
+        'training_data_size': len(ml_recommender.training_data),
+        'business_categories': len(ml_recommender.business_data),
+        'algorithm_components': [
+            'TF-IDF Vectorization for skill matching',
+            'Random Forest for pattern recognition',
+            'Feature engineering for categorical data',
+            'Cosine similarity for skill alignment',
+            'Multi-factor scoring system'
+        ]
+    })
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

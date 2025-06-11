@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, TrendingUp, DollarSign, Clock, ExternalLink, BookOpen, Target, Users, Star, Award, MapPin, Calendar, Briefcase, CheckCircle, Phone, Mail, MessageCircle, Linkedin, Globe, User } from 'lucide-react';
+import { ArrowLeft, TrendingUp, DollarSign, Clock, ExternalLink, BookOpen, Target, Users, Star, Award, MapPin, Calendar, Briefcase, CheckCircle, Phone, Mail, MessageCircle, Linkedin, Globe, User, Brain, BarChart3, Cpu } from 'lucide-react';
 import { Recommendation } from '../types';
 
 interface RecommendationResultsProps {
@@ -11,7 +11,7 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
   recommendations, 
   onReset 
 }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'resources' | 'financials' | 'workforce' | 'stories' | 'mentors'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'resources' | 'financials' | 'workforce' | 'stories' | 'mentors' | 'algorithm'>('overview');
 
   const handleContactClick = (type: string, value: string) => {
     switch (type) {
@@ -53,9 +53,15 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
           <span>Back to Form</span>
         </button>
         
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-          Your Personalized Business Recommendations
-        </h2>
+        <div className="text-center">
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            AI-Powered Business Recommendations
+          </h2>
+          <div className="flex items-center justify-center space-x-2 mt-2 text-sm text-gray-600">
+            <Brain className="h-4 w-4 text-purple-600" />
+            <span>Machine Learning Algorithm</span>
+          </div>
+        </div>
         
         <div className="w-24"></div>
       </div>
@@ -65,6 +71,7 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
         <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-1 flex flex-wrap justify-center">
           {[
             { key: 'overview', label: 'Overview', icon: Target },
+            { key: 'algorithm', label: 'AI Insights', icon: Brain },
             { key: 'stories', label: 'Success Stories', icon: Award },
             { key: 'mentors', label: 'Expert Mentors', icon: User },
             { key: 'resources', label: 'Learning', icon: BookOpen },
@@ -107,8 +114,8 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
                       <span>Recommendation #{index + 1}</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4" />
-                      <span>{recommendation.confidenceScore}% Match</span>
+                      <Brain className="h-4 w-4" />
+                      <span>{recommendation.confidenceScore}% AI Match</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Briefcase className="h-4 w-4" />
@@ -117,10 +124,15 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-purple-100 text-sm">Expected ROI</div>
+                  <div className="text-purple-100 text-sm">ML Confidence</div>
                   <div className="text-white text-xl font-bold">
-                    {recommendation.financials.profit_margin}
+                    {recommendation.confidenceScore}%
                   </div>
+                  {recommendation.mlScore && (
+                    <div className="text-purple-200 text-xs">
+                      Score: {(recommendation.mlScore * 100).toFixed(1)}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -145,7 +157,7 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
                         <TrendingUp className="h-5 w-5 text-green-600" />
                         <span className="text-2xl font-bold text-green-600">{recommendation.confidenceScore}%</span>
                       </div>
-                      <p className="text-sm text-gray-600">Confidence Match</p>
+                      <p className="text-sm text-gray-600">AI Confidence Match</p>
                     </div>
                     
                     <div className="bg-purple-50 rounded-lg p-4">
@@ -167,7 +179,7 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
 
                   {/* Data Sources */}
                   <div className="bg-gray-50 rounded-lg p-4">
-                    <h5 className="font-medium text-gray-800 mb-2">Data Sources & Transparency</h5>
+                    <h5 className="font-medium text-gray-800 mb-2">Data Sources & AI Transparency</h5>
                     <div className="flex flex-wrap gap-2">
                       {recommendation.dataSources.map((source, idx) => (
                         <span key={idx} className="px-3 py-1 bg-white rounded-full text-sm text-gray-600 border">
@@ -176,8 +188,141 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
                       ))}
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
-                      * These recommendations are guidance-based and not guaranteed results. Success depends on various factors including market conditions and execution.
+                      * These AI-powered recommendations are guidance-based and not guaranteed results. Success depends on various factors including market conditions and execution.
                     </p>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'algorithm' && (
+                <div className="space-y-6">
+                  <h4 className="font-semibold text-gray-800 mb-4 flex items-center">
+                    <Brain className="h-5 w-5 text-purple-600 mr-2" />
+                    AI Algorithm Insights for {recommendation.name}
+                  </h4>
+
+                  {/* Algorithm Overview */}
+                  {recommendation.algorithmInfo && (
+                    <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
+                      <h5 className="font-medium text-gray-800 mb-4 flex items-center">
+                        <Cpu className="h-5 w-5 text-purple-600 mr-2" />
+                        Machine Learning Model Details
+                      </h5>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="bg-white rounded-lg p-4 border border-purple-300">
+                          <h6 className="font-medium text-purple-800 mb-2">Model Type</h6>
+                          <p className="text-gray-700">{recommendation.algorithmInfo.model}</p>
+                        </div>
+                        <div className="bg-white rounded-lg p-4 border border-purple-300">
+                          <h6 className="font-medium text-purple-800 mb-2">Training Data</h6>
+                          <p className="text-gray-700">{recommendation.algorithmInfo.trainingData}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-4 bg-white rounded-lg p-4 border border-purple-300">
+                        <h6 className="font-medium text-purple-800 mb-2">Feature Engineering</h6>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {recommendation.algorithmInfo.features.map((feature, idx) => (
+                            <div key={idx} className="flex items-center space-x-2">
+                              <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                              <span className="text-sm text-gray-700">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Confidence Score Breakdown */}
+                  <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
+                    <h5 className="font-medium text-gray-800 mb-4 flex items-center">
+                      <BarChart3 className="h-5 w-5 text-blue-600 mr-2" />
+                      Confidence Score Breakdown
+                    </h5>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Skill Matching (TF-IDF)</span>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-32 bg-gray-200 rounded-full h-2">
+                            <div className="bg-blue-600 h-2 rounded-full" style={{width: `${Math.min(100, recommendation.confidenceScore * 0.4)}%`}}></div>
+                          </div>
+                          <span className="text-sm font-medium">{Math.round(recommendation.confidenceScore * 0.4)}%</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Experience Level Match</span>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-32 bg-gray-200 rounded-full h-2">
+                            <div className="bg-green-600 h-2 rounded-full" style={{width: `${Math.min(100, recommendation.confidenceScore * 0.25)}%`}}></div>
+                          </div>
+                          <span className="text-sm font-medium">{Math.round(recommendation.confidenceScore * 0.25)}%</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Location Suitability</span>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-32 bg-gray-200 rounded-full h-2">
+                            <div className="bg-purple-600 h-2 rounded-full" style={{width: `${Math.min(100, recommendation.confidenceScore * 0.2)}%`}}></div>
+                          </div>
+                          <span className="text-sm font-medium">{Math.round(recommendation.confidenceScore * 0.2)}%</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Business Type Alignment</span>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-32 bg-gray-200 rounded-full h-2">
+                            <div className="bg-orange-600 h-2 rounded-full" style={{width: `${Math.min(100, recommendation.confidenceScore * 0.15)}%`}}></div>
+                          </div>
+                          <span className="text-sm font-medium">{Math.round(recommendation.confidenceScore * 0.15)}%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ML Score Details */}
+                  {recommendation.mlScore && (
+                    <div className="bg-green-50 rounded-lg p-6 border border-green-200">
+                      <h5 className="font-medium text-gray-800 mb-3">Raw ML Prediction Score</h5>
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-1">
+                          <div className="w-full bg-gray-200 rounded-full h-3">
+                            <div 
+                              className="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full" 
+                              style={{width: `${recommendation.mlScore * 100}%`}}
+                            ></div>
+                          </div>
+                        </div>
+                        <span className="text-lg font-bold text-green-600">
+                          {(recommendation.mlScore * 100).toFixed(1)}%
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-2">
+                        This raw score from the Random Forest model indicates the predicted success probability before business-specific adjustments.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Algorithm Explanation */}
+                  <div className="bg-yellow-50 rounded-lg p-6 border border-yellow-200">
+                    <h5 className="font-medium text-gray-800 mb-3">How the AI Works</h5>
+                    <div className="space-y-3 text-sm text-gray-700">
+                      <div className="flex items-start space-x-2">
+                        <div className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                        <p><strong>Skill Analysis:</strong> Uses TF-IDF vectorization to analyze skill similarity between your profile and successful business owners.</p>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                        <p><strong>Pattern Recognition:</strong> Random Forest algorithm identifies patterns from 1000+ training samples of successful entrepreneurs.</p>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                        <p><strong>Multi-Factor Scoring:</strong> Combines skill matching, experience level, location preferences, and business type alignment.</p>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold">4</div>
+                        <p><strong>Confidence Calibration:</strong> Applies business-specific adjustments and market factors to generate final recommendations.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -641,7 +786,7 @@ const RecommendationResults: React.FC<RecommendationResultsProps> = ({
           onClick={onReset}
           className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-200 transform hover:scale-105"
         >
-          Get New Recommendations
+          Get New AI Recommendations
         </button>
       </div>
     </div>

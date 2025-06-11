@@ -90,16 +90,25 @@ export interface Mentor {
   }[];
 }
 
+export interface AlgorithmInfo {
+  model: string;
+  features: string[];
+  trainingData: string;
+  accuracy: string;
+}
+
 export interface Recommendation {
   name: string;
   id: string;
   description: string;
   businessType: 'goods' | 'service' | 'both';
   confidenceScore: number;
+  mlScore?: number;
   resources: Resource[];
   financials: FinancialPlan;
   caseStudies: CaseStudy[];
   workforcePlan: WorkforcePlan;
   dataSources: string[];
   mentors: Mentor[];
+  algorithmInfo?: AlgorithmInfo;
 }

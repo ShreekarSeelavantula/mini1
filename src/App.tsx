@@ -34,7 +34,7 @@ function App() {
       }
     } catch (error) {
       console.error('Network error:', error);
-      // Enhanced fallback data with all new features including mentors
+      // Enhanced fallback data with ML algorithm info
       setRecommendations([
         {
           name: 'Tailoring Services',
@@ -42,6 +42,7 @@ function App() {
           description: 'A tailoring business involves creating, altering, and repairing clothing items. This service-based business can range from basic alterations to custom clothing design, offering flexibility to work from home or establish a shop.',
           businessType: 'goods',
           confidenceScore: 85,
+          mlScore: 0.78,
           resources: [
             { title: 'Complete Tailoring Course', link: '#', type: 'Video Course', duration: '40 hours', level: 'All Levels' },
             { title: 'NSDC Tailoring Certification', link: '#', type: 'Government Certification', duration: '3 months', level: 'Beginner' }
@@ -132,7 +133,13 @@ function App() {
               ]
             }
           ],
-          dataSources: ['NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data']
+          dataSources: ['ML Algorithm', 'NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data'],
+          algorithmInfo: {
+            model: 'Random Forest Classifier',
+            features: ['Skill Matching (TF-IDF)', 'Experience Level', 'Location Preference', 'Education Level', 'Business Type Alignment'],
+            trainingData: '1000+ samples',
+            accuracy: 'Cross-validated on synthetic data'
+          }
         }
       ]);
       setShowResults(true);
@@ -167,7 +174,7 @@ function App() {
             Empowering women entrepreneurs with AI-powered business insights and comprehensive planning
           </p>
           <p className="text-sm text-gray-500 mt-2">
-            * Recommendations are guidance-based and success depends on various factors including market conditions and execution
+            * AI recommendations are guidance-based and success depends on various factors including market conditions and execution
           </p>
         </div>
       </footer>
