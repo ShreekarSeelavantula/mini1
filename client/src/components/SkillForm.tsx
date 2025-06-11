@@ -7,11 +7,23 @@ interface SkillFormProps {
   loading: boolean;
 }
 
-const PREDEFINED_SKILLS = [
-  'Sewing', 'Cooking', 'Art & Craft', 'Teaching', 'Beauty & Makeup',
-  'Technology', 'Communication', 'Management', 'Sales', 'Writing',
-  'Photography', 'Dancing', 'Music', 'Embroidery', 'Jewelry Making',
-  'Marketing', 'Accounting', 'Customer Service', 'Event Planning'
+const GOODS_SKILLS = [
+  'Sewing', 'Cooking', 'Art & Craft', 'Embroidery', 'Jewelry Making',
+  'Pottery', 'Woodwork', 'Fashion Design', 'Food Preparation', 'Baking',
+  'Handicrafts', 'Traditional Arts', 'Pattern Making', 'Garment Making',
+  'Product Design', 'Manufacturing', 'Quality Control', 'Packaging'
+];
+
+const SERVICE_SKILLS = [
+  'Teaching', 'Beauty & Makeup', 'Hair Styling', 'Skincare', 'Tutoring',
+  'Consulting', 'Event Planning', 'Training', 'Mentoring', 'Counseling', 
+  'Fitness Training', 'Healthcare', 'Legal Services', 'Accounting', 
+  'Digital Marketing', 'Content Creation'
+];
+
+const COMMON_SKILLS = [
+  'Technology', 'Management', 'Sales', 'Writing', 'Photography', 
+  'Marketing', 'Social Media', 'Customer Service', 'Communication'
 ];
 
 const SkillForm: React.FC<SkillFormProps> = ({ onSubmit, loading }) => {
@@ -25,6 +37,16 @@ const SkillForm: React.FC<SkillFormProps> = ({ onSubmit, loading }) => {
   });
   const [algorithm, setAlgorithm] = useState<'ml' | 'rule'>('ml');
   const [customSkill, setCustomSkill] = useState('');
+
+  // Get relevant skills based on business type
+  const getRelevantSkills = () => {
+    if (formData.businessType === 'goods') {
+      return [...GOODS_SKILLS, ...COMMON_SKILLS];
+    } else if (formData.businessType === 'service') {
+      return [...SERVICE_SKILLS, ...COMMON_SKILLS];
+    }
+    return [...GOODS_SKILLS, ...SERVICE_SKILLS, ...COMMON_SKILLS];
+  };
 
   const handleSkillToggle = (skill: string) => {
     setFormData(prev => ({
@@ -161,7 +183,7 @@ const SkillForm: React.FC<SkillFormProps> = ({ onSubmit, loading }) => {
           
           {/* Predefined Skills */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-4">
-            {PREDEFINED_SKILLS.map((skill) => (
+            {getRelevantSkills().map((skill: string) => (
               <button
                 key={skill}
                 type="button"

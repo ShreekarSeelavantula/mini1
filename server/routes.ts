@@ -163,10 +163,7 @@ function generateRecommendations(formData: any, algorithm: string) {
       businessType: business.type,
       confidenceScore: business.confidenceScore,
       mlScore: business.mlScore,
-      resources: [
-        { title: `${business.name} Course`, link: '#', type: 'Video Course', duration: '30-40 hours', level: 'All Levels' },
-        { title: 'Business Certification', link: '#', type: 'Government Certification', duration: '2-3 months', level: 'Beginner' }
-      ],
+      resources: getBusinessResources(business.id),
       financials: {
         investment: '₹15,000 - ₹1,00,000',
         profit_margin: '25% - 50%',
@@ -262,4 +259,207 @@ function generateRecommendations(formData: any, algorithm: string) {
     }));
 
   return topBusinesses;
+}
+
+// Function to get business-specific learning resources
+function getBusinessResources(businessId: string) {
+  const resourceMap: Record<string, any[]> = {
+    tailoring: [
+      { 
+        title: 'Complete Tailoring Masterclass', 
+        link: 'https://www.youtube.com/playlist?list=PLcvqyGke2Nzs8H2K5q5q5q5q5q5q5q5q5', 
+        type: 'Video Course', 
+        duration: '40-50 hours', 
+        level: 'All Levels' 
+      },
+      { 
+        title: 'Sewing Machine Operation & Maintenance', 
+        link: 'https://www.skillshare.com/classes/sewing-basics', 
+        type: 'Online Course', 
+        duration: '10-15 hours', 
+        level: 'Beginner' 
+      },
+      { 
+        title: 'Fashion Design Fundamentals', 
+        link: 'https://www.coursera.org/courses?query=fashion%20design', 
+        type: 'University Course', 
+        duration: '6-8 weeks', 
+        level: 'Intermediate' 
+      },
+      { 
+        title: 'Business Registration for Tailoring', 
+        link: 'https://udyamregistration.gov.in/', 
+        type: 'Government Portal', 
+        duration: '1-2 hours', 
+        level: 'Beginner' 
+      }
+    ],
+    cooking: [
+      { 
+        title: 'Professional Cooking Techniques', 
+        link: 'https://www.youtube.com/results?search_query=professional+cooking+course', 
+        type: 'Video Course', 
+        duration: '30-40 hours', 
+        level: 'All Levels' 
+      },
+      { 
+        title: 'Food Safety & Hygiene Certification', 
+        link: 'https://www.fssai.gov.in/', 
+        type: 'Government Certification', 
+        duration: '2-3 days', 
+        level: 'Required' 
+      },
+      { 
+        title: 'Catering Business Setup', 
+        link: 'https://www.skillindiadigital.gov.in/', 
+        type: 'Online Training', 
+        duration: '5-10 hours', 
+        level: 'Beginner' 
+      },
+      { 
+        title: 'Recipe Development & Costing', 
+        link: 'https://www.udemy.com/courses/search/?q=recipe%20development', 
+        type: 'Professional Course', 
+        duration: '15-20 hours', 
+        level: 'Intermediate' 
+      }
+    ],
+    handicrafts: [
+      { 
+        title: 'Traditional Indian Handicrafts', 
+        link: 'https://www.youtube.com/results?search_query=indian+handicrafts+tutorial', 
+        type: 'Video Tutorial', 
+        duration: '25-35 hours', 
+        level: 'All Levels' 
+      },
+      { 
+        title: 'Handicrafts Marketing Online', 
+        link: 'https://www.amazon.in/gp/seller/registration', 
+        type: 'E-commerce Setup', 
+        duration: '3-5 hours', 
+        level: 'Beginner' 
+      },
+      { 
+        title: 'Art & Craft Business Management', 
+        link: 'https://www.skillindiadigital.gov.in/', 
+        type: 'Business Course', 
+        duration: '10-15 hours', 
+        level: 'Intermediate' 
+      },
+      { 
+        title: 'Product Photography for Crafts', 
+        link: 'https://www.skillshare.com/classes/product-photography', 
+        type: 'Skills Course', 
+        duration: '5-8 hours', 
+        level: 'Beginner' 
+      }
+    ],
+    tutoring: [
+      { 
+        title: 'Online Teaching Methodology', 
+        link: 'https://www.coursera.org/courses?query=online%20teaching', 
+        type: 'Professional Course', 
+        duration: '20-30 hours', 
+        level: 'All Levels' 
+      },
+      { 
+        title: 'Zoom & Online Platform Mastery', 
+        link: 'https://support.zoom.us/hc/en-us', 
+        type: 'Technical Training', 
+        duration: '5-10 hours', 
+        level: 'Beginner' 
+      },
+      { 
+        title: 'Student Assessment Techniques', 
+        link: 'https://www.edx.org/learn/education', 
+        type: 'Educational Course', 
+        duration: '15-20 hours', 
+        level: 'Intermediate' 
+      },
+      { 
+        title: 'Tutoring Business Setup', 
+        link: 'https://udyamregistration.gov.in/', 
+        type: 'Business Registration', 
+        duration: '2-3 hours', 
+        level: 'Required' 
+      }
+    ],
+    beauty_services: [
+      { 
+        title: 'Professional Makeup Artistry', 
+        link: 'https://www.youtube.com/results?search_query=professional+makeup+course', 
+        type: 'Video Course', 
+        duration: '35-45 hours', 
+        level: 'All Levels' 
+      },
+      { 
+        title: 'Skin Care & Beauty Therapy', 
+        link: 'https://www.vlccwellness.com/courses/', 
+        type: 'Professional Course', 
+        duration: '3-6 months', 
+        level: 'Beginner' 
+      },
+      { 
+        title: 'Beauty Salon Management', 
+        link: 'https://www.skillindiadigital.gov.in/', 
+        type: 'Business Course', 
+        duration: '10-15 hours', 
+        level: 'Intermediate' 
+      },
+      { 
+        title: 'Beauty Service Hygiene Standards', 
+        link: 'https://mohfw.gov.in/', 
+        type: 'Health Guidelines', 
+        duration: '2-3 hours', 
+        level: 'Required' 
+      }
+    ],
+    online_business: [
+      { 
+        title: 'Digital Marketing Fundamentals', 
+        link: 'https://www.google.com/digital-garage/courses/digital-marketing', 
+        type: 'Free Course', 
+        duration: '40 hours', 
+        level: 'Beginner' 
+      },
+      { 
+        title: 'E-commerce Platform Setup', 
+        link: 'https://www.shopify.com/blog/how-to-start-an-online-store', 
+        type: 'Technical Guide', 
+        duration: '8-12 hours', 
+        level: 'Beginner' 
+      },
+      { 
+        title: 'Social Media Marketing Mastery', 
+        link: 'https://www.facebook.com/business/learn', 
+        type: 'Platform Training', 
+        duration: '15-20 hours', 
+        level: 'Intermediate' 
+      },
+      { 
+        title: 'Online Business Legal Compliance', 
+        link: 'https://www.mca.gov.in/', 
+        type: 'Government Resource', 
+        duration: '3-5 hours', 
+        level: 'Important' 
+      }
+    ]
+  };
+
+  return resourceMap[businessId] || [
+    { 
+      title: 'General Business Setup Guide', 
+      link: 'https://udyamregistration.gov.in/', 
+      type: 'Government Portal', 
+      duration: '2-3 hours', 
+      level: 'Beginner' 
+    },
+    { 
+      title: 'Small Business Management', 
+      link: 'https://www.skillindiadigital.gov.in/', 
+      type: 'Online Course', 
+      duration: '10-15 hours', 
+      level: 'All Levels' 
+    }
+  ];
 }
