@@ -4,6 +4,7 @@ import joblib
 import json
 import os
 from ml_recommender import ml_recommender
+from rule_recommender import BusinessRecommender as RuleBusinessRecommender
 
 app = Flask(__name__)
 CORS(app)
@@ -22,6 +23,9 @@ case_studies_data = load_json_data('case_studies.json')
 workforce_data = load_json_data('workforce.json')
 mentors_data = load_json_data('mentors.json')
 
+# Initialize rule-based recommender
+rule_recommender = RuleBusinessRecommender()
+
 @app.route('/api/recommend', methods=['POST'])
 def get_recommendations():
     try:
@@ -32,8 +36,8 @@ def get_recommendations():
         education = data.get('education', '12th')
         business_type = data.get('businessType', '')
         work_environment = data.get('workEnvironment', 'solo')
-        
-        # Prepare input for ML model
+        algorithm = request.args.get('algorithm', 'ml').lower()
+
         user_input = {
             'skills': skills,
             'experience': experience,
@@ -42,61 +46,162 @@ def get_recommendations():
             'businessType': business_type,
             'workEnvironment': work_environment
         }
-        
-        # Get ML-based recommendations
-        ml_recommendations = ml_recommender.get_recommendations(user_input, top_k=5)
-        
-        # Prepare response with all data
+
+        # Try ML-based recommendations first
+        try:
+            if algorithm == 'ml':
+                ml_recommendations = ml_recommender.get_recommendations(user_input, top_k=5)
+                response = []
+                for rec in ml_recommendations:
+                    business_id = rec['business_id']
+                    confidence_score = rec['confidence_score']
+                    business_mentors = mentors_data.get(business_id, [])
+                    if business_type:
+                        business_mentors = [m for m in business_mentors if m['businessType'] == business_type or m['businessType'] == 'both']
+                    business_data = {
+                        'name': business_id.replace('_', ' ').title(),
+                        'id': business_id,
+                        'description': get_business_description(business_id),
+                        'businessType': ml_recommender.business_data[business_id]['business_type'],
+                        'confidenceScore': confidence_score,
+                        'mlScore': rec['ml_score'],
+                        'resources': resources_data.get(business_id, []),
+                        'financials': financials_data.get(business_id, {}),
+                        'caseStudies': case_studies_data.get(business_id, []),
+                        'workforcePlan': workforce_data.get(business_id, {}),
+                        'mentors': business_mentors,
+                        'dataSources': ['ML Algorithm', 'NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data', 'Market Analysis'],
+                        'algorithmInfo': {
+                            'model': 'Random Forest Classifier',
+                            'features': ['Skill Matching (TF-IDF)', 'Experience Level', 'Location Preference', 'Education Level', 'Business Type Alignment'],
+                            'trainingData': f'{len(ml_recommender.training_data)} samples',
+                            'accuracy': 'Cross-validated on synthetic data'
+                        }
+                    }
+                    response.append(business_data)
+                return jsonify({
+                    'success': True,
+                    'recommendations': response,
+                    'algorithm': 'Machine Learning (Random Forest + TF-IDF)',
+                    'modelInfo': {
+                        'type': 'Hybrid ML Model',
+                        'components': ['Random Forest Classifier', 'TF-IDF Vectorization', 'Feature Engineering'],
+                        'trainingSize': len(ml_recommender.training_data)
+                    }
+                })
+        except Exception as ml_error:
+            print(f"ML recommendation error: {str(ml_error)}")
+            # Fall back to rule-based recommendations if ML fails
+            algorithm = 'rule'
+
+        # Use rule-based recommender
+        rule_recommendations = rule_recommender.recommend(
+            skills, experience, location, education, business_type, work_environment
+        )
         response = []
-        for rec in ml_recommendations:
-            business_id = rec['business_id']
-            confidence_score = rec['confidence_score']
-            
-            # Get mentors for this business type
-            business_mentors = mentors_data.get(business_id, [])
-            # Filter mentors by business type preference
+        for business in rule_recommendations:
+            business_mentors = mentors_data.get(business, [])
             if business_type:
                 business_mentors = [m for m in business_mentors if m['businessType'] == business_type or m['businessType'] == 'both']
             
+            # Calculate confidence score
+            confidence_score = int(rule_recommender.calculate_score(
+                business, skills, experience, location, education, business_type, work_environment
+            ) * 100)
+            
             business_data = {
-                'name': business_id.replace('_', ' ').title(),
-                'id': business_id,
-                'description': get_business_description(business_id),
-                'businessType': ml_recommender.business_data[business_id]['business_type'],
+                'name': business.replace('_', ' ').title(),
+                'id': business,
+                'description': get_business_description(business),
+                'businessType': rule_recommender.business_matrix[business]['type'],
                 'confidenceScore': confidence_score,
-                'mlScore': rec['ml_score'],
-                'resources': resources_data.get(business_id, []),
-                'financials': financials_data.get(business_id, {}),
-                'caseStudies': case_studies_data.get(business_id, []),
-                'workforcePlan': workforce_data.get(business_id, {}),
+                'resources': resources_data.get(business, []),
+                'financials': financials_data.get(business, {}),
+                'caseStudies': case_studies_data.get(business, []),
+                'workforcePlan': workforce_data.get(business, {}),
                 'mentors': business_mentors,
-                'dataSources': ['ML Algorithm', 'NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data', 'Market Analysis'],
-                'algorithmInfo': {
-                    'model': 'Random Forest Classifier',
-                    'features': ['Skill Matching (TF-IDF)', 'Experience Level', 'Location Preference', 'Education Level', 'Business Type Alignment'],
-                    'trainingData': f'{len(ml_recommender.training_data)} samples',
-                    'accuracy': 'Cross-validated on synthetic data'
-                }
+                'dataSources': ['Rule-based Algorithm', 'NSDC Skills Database', 'MSME Success Stories', 'Government Schemes Data']
             }
             response.append(business_data)
-        
         return jsonify({
             'success': True,
             'recommendations': response,
-            'algorithm': 'Machine Learning (Random Forest + TF-IDF)',
-            'modelInfo': {
-                'type': 'Hybrid ML Model',
-                'components': ['Random Forest Classifier', 'TF-IDF Vectorization', 'Feature Engineering'],
-                'trainingSize': len(ml_recommender.training_data)
-            }
+            'algorithm': 'Rule-based'
         })
-    
+
     except Exception as e:
         print(f"Error in recommendation: {str(e)}")
+        # Return a basic set of recommendations based on skills
+        basic_recommendations = []
+        for skill in skills:
+            skill_lower = skill.lower()
+            if 'sewing' in skill_lower or 'tailoring' in skill_lower:
+                basic_recommendations.append({
+                    'name': 'Tailoring Services',
+                    'id': 'tailoring',
+                    'description': get_business_description('tailoring'),
+                    'businessType': 'goods',
+                    'confidenceScore': 85,
+                    'resources': resources_data.get('tailoring', []),
+                    'financials': financials_data.get('tailoring', {}),
+                    'caseStudies': case_studies_data.get('tailoring', []),
+                    'workforcePlan': workforce_data.get('tailoring', {}),
+                    'mentors': mentors_data.get('tailoring', []),
+                    'dataSources': ['Basic Skill Matching', 'NSDC Skills Database']
+                })
+            elif 'cooking' in skill_lower or 'baking' in skill_lower:
+                basic_recommendations.append({
+                    'name': 'Cooking Services',
+                    'id': 'cooking',
+                    'description': get_business_description('cooking'),
+                    'businessType': 'goods',
+                    'confidenceScore': 85,
+                    'resources': resources_data.get('cooking', []),
+                    'financials': financials_data.get('cooking', {}),
+                    'caseStudies': case_studies_data.get('cooking', []),
+                    'workforcePlan': workforce_data.get('cooking', {}),
+                    'mentors': mentors_data.get('cooking', []),
+                    'dataSources': ['Basic Skill Matching', 'NSDC Skills Database']
+                })
+            elif 'teaching' in skill_lower or 'education' in skill_lower:
+                basic_recommendations.append({
+                    'name': 'Online Tutoring',
+                    'id': 'tutoring',
+                    'description': get_business_description('tutoring'),
+                    'businessType': 'service',
+                    'confidenceScore': 85,
+                    'resources': resources_data.get('tutoring', []),
+                    'financials': financials_data.get('tutoring', {}),
+                    'caseStudies': case_studies_data.get('tutoring', []),
+                    'workforcePlan': workforce_data.get('tutoring', {}),
+                    'mentors': mentors_data.get('tutoring', []),
+                    'dataSources': ['Basic Skill Matching', 'NSDC Skills Database']
+                })
+
+        # If no specific matches found, return general recommendations
+        if not basic_recommendations:
+            basic_recommendations = [
+                {
+                    'name': 'Online Business',
+                    'id': 'online_business',
+                    'description': get_business_description('online_business'),
+                    'businessType': 'both',
+                    'confidenceScore': 80,
+                    'resources': resources_data.get('online_business', []),
+                    'financials': financials_data.get('online_business', {}),
+                    'caseStudies': case_studies_data.get('online_business', []),
+                    'workforcePlan': workforce_data.get('online_business', {}),
+                    'mentors': mentors_data.get('online_business', []),
+                    'dataSources': ['General Recommendation', 'NSDC Skills Database']
+                }
+            ]
+
         return jsonify({
-            'success': False,
+            'success': True,
+            'recommendations': basic_recommendations,
+            'algorithm': 'Basic Skill Matching',
             'error': str(e)
-        }), 500
+        })
 
 def get_business_description(business_id):
     descriptions = {

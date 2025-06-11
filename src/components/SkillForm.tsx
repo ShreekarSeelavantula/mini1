@@ -3,7 +3,7 @@ import { ChevronRight, Loader2, Plus, X, Package, Users, User } from 'lucide-rea
 import { UserInput } from '../types';
 
 interface SkillFormProps {
-  onSubmit: (data: UserInput) => void;
+  onSubmit: (data: UserInput, algorithm: string) => void;
   loading: boolean;
 }
 
@@ -23,7 +23,7 @@ const SkillForm: React.FC<SkillFormProps> = ({ onSubmit, loading }) => {
     businessType: '',
     workEnvironment: ''
   });
-  
+  const [algorithm, setAlgorithm] = useState<'ml' | 'rule'>('ml');
   const [customSkill, setCustomSkill] = useState('');
 
   const handleSkillToggle = (skill: string) => {
@@ -55,7 +55,7 @@ const SkillForm: React.FC<SkillFormProps> = ({ onSubmit, loading }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.skills.length > 0 && formData.experience && formData.location && formData.businessType) {
-      onSubmit(formData);
+      onSubmit(formData, algorithm);
     }
   };
 
@@ -288,6 +288,21 @@ const SkillForm: React.FC<SkillFormProps> = ({ onSubmit, loading }) => {
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Algorithm Selection */}
+        <div>
+          <label className="block text-lg font-semibold text-gray-800 mb-4">
+            Recommendation Algorithm
+          </label>
+          <select
+            value={algorithm}
+            onChange={e => setAlgorithm(e.target.value as 'ml' | 'rule')}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          >
+            <option value="ml">AI/ML (Recommended)</option>
+            <option value="rule">Rule-based</option>
+          </select>
         </div>
 
         {/* Submit Button */}
