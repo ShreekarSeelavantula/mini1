@@ -127,19 +127,19 @@ function generateRecommendations(formData: any, algorithm: string) {
 
     // Location preference (20% weight)
     const locationScores: Record<string, number> = {
-      'urban': 1.0,
+      urban: 1.0,
       'semi-urban': 0.8,
-      'rural': 0.6
+      rural: 0.6
     };
     const locationScore = locationScores[formData.location.toLowerCase()] || 0.8;
     score += locationScore * 0.2;
 
     // Experience level (20% weight)
     const experienceScores: Record<string, number> = {
-      'none': 0.6,
-      'beginner': 0.7,
-      'intermediate': 0.8,
-      'expert': 1.0
+      none: 0.6,
+      beginner: 0.7,
+      intermediate: 0.8,
+      expert: 1.0
     };
     const experienceScore = experienceScores[formData.experience.toLowerCase()] || 0.7;
     score += experienceScore * 0.2;
