@@ -12,7 +12,7 @@ function App() {
   const handleFormSubmit = async (formData: UserInput, algorithm: string) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/recommend?algorithm=${algorithm}`, {
+      const response = await fetch(`/api/recommend?algorithm=${algorithm}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
