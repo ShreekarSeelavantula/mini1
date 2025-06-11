@@ -58,7 +58,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
   return httpServer;
 }
 
-// Business recommendation logic
+// Semantic similarity function for skill matching
+function getSemanticSimilarity(skill1: string, skill2: string): number {
+  const skillSynonyms: Record<string, string[]> = {
+    'sewing': ['stitching', 'tailoring', 'garment making', 'needle work', 'embroidery', 'fashion design'],
+    'cooking': ['culinary', 'food preparation', 'baking', 'catering', 'recipe development', 'food service'],
+    'art & craft': ['handicrafts', 'creativity', 'traditional arts', 'pottery', 'woodwork', 'art'],
+    'teaching': ['tutoring', 'education', 'training', 'mentoring', 'academic', 'communication'],
+    'beauty & makeup': ['hair styling', 'skincare', 'aesthetics', 'cosmetics', 'beauty'],
+    'technology': ['digital marketing', 'online', 'e-commerce', 'social media', 'content creation'],
+    'management': ['business', 'leadership', 'organization', 'planning', 'administration'],
+    'sales': ['marketing', 'customer service', 'business development', 'promotion'],
+    'communication': ['writing', 'presentation', 'public speaking', 'customer service'],
+    'photography': ['visual arts', 'digital media', 'content creation', 'image editing'],
+    'accounting': ['finance', 'bookkeeping', 'financial management', 'taxation'],
+    'event planning': ['organization', 'coordination', 'project management', 'logistics']
+  };
+
+  // Check if skills are synonyms
+  for (const [mainSkill, synonyms] of Object.entries(skillSynonyms)) {
+    if ((skill1.includes(mainSkill) || synonyms.some(syn => skill1.includes(syn))) &&
+        (skill2.includes(mainSkill) || synonyms.some(syn => skill2.includes(syn)))) {
+      return 0.9;
+    }
+  }
+
+  // Check for partial word matches
+  const words1 = skill1.split(/[\s&-]+/);
+  const words2 = skill2.split(/[\s&-]+/);
+  let commonWords = 0;
+  
+  words1.forEach(word1 => {
+    words2.forEach(word2 => {
+      if (word1.length > 3 && word2.length > 3 && 
+          (word1.includes(word2) || word2.includes(word1))) {
+        commonWords++;
+      }
+    });
+  });
+
+  return commonWords > 0 ? 0.7 : 0;
+}
+
+// Enhanced business recommendation logic
 function generateRecommendations(formData: any, algorithm: string) {
   const userSkills = formData.skills.map((s: string) => s.toLowerCase());
   const businessType = formData.businessType?.toLowerCase() as 'goods' | 'service' | 'both' || 'both';
@@ -68,91 +110,139 @@ function generateRecommendations(formData: any, algorithm: string) {
       id: 'tailoring',
       name: 'Tailoring Services',
       type: 'goods' as const,
-      skills: ['sewing', 'fashion', 'design', 'alterations', 'embroidery', 'pattern making', 'stitching', 'garment making'],
-      description: 'A tailoring business involves creating, altering, and repairing clothing items. This service-based business can range from basic alterations to custom clothing design, offering flexibility to work from home or establish a shop.'
+      skills: ['sewing', 'fashion design', 'alterations', 'embroidery', 'pattern making', 'stitching', 'garment making', 'needle work'],
+      description: 'A tailoring business involves creating, altering, and repairing clothing items. Perfect for those with sewing and fashion design skills.'
     },
     {
       id: 'cooking',
       name: 'Cooking Services',
       type: 'goods' as const,
       skills: ['cooking', 'food preparation', 'nutrition', 'catering', 'baking', 'recipe development', 'culinary', 'food service'],
-      description: 'A cooking business offering custom meal preparation, catering services, and cooking classes. Perfect for those with culinary expertise and a passion for food.'
+      description: 'A cooking business offering meal preparation, catering services, and cooking classes. Ideal for culinary enthusiasts.'
     },
     {
       id: 'handicrafts',
       name: 'Handicrafts Business',
       type: 'goods' as const,
-      skills: ['art', 'craft', 'creativity', 'handmade', 'traditional arts', 'pottery', 'woodwork', 'art & craft'],
-      description: 'A handicrafts business creating and selling handmade items, traditional art pieces, and custom crafts. Ideal for those with artistic skills and creativity.'
+      skills: ['art & craft', 'creativity', 'handmade', 'traditional arts', 'pottery', 'woodwork', 'jewelry making', 'product design'],
+      description: 'Create and sell handmade items, traditional art pieces, and custom crafts. Perfect for artistic and creative individuals.'
     },
     {
       id: 'tutoring',
       name: 'Online Tutoring',
       type: 'service' as const,
-      skills: ['teaching', 'education', 'communication', 'subject expertise', 'mentoring', 'training', 'academic'],
-      description: 'An online tutoring business offering personalized education services to students. Perfect for those with teaching experience and strong subject knowledge.'
+      skills: ['teaching', 'education', 'communication', 'subject expertise', 'mentoring', 'training', 'academic', 'presentation'],
+      description: 'Provide personalized education services to students. Ideal for those with teaching experience and subject knowledge.'
     },
     {
       id: 'beauty_services',
       name: 'Beauty Services',
       type: 'service' as const,
-      skills: ['beauty', 'makeup', 'hair styling', 'skincare', 'aesthetics', 'customer service', 'beauty & makeup'],
-      description: 'A beauty services business offering makeup, hair styling, and skincare services. Great for those with beauty expertise and customer service skills.'
+      skills: ['beauty & makeup', 'hair styling', 'skincare', 'aesthetics', 'customer service', 'cosmetics', 'beauty'],
+      description: 'Offer makeup, hair styling, and skincare services. Great for beauty enthusiasts with customer service skills.'
     },
     {
       id: 'online_business',
       name: 'Online Business',
       type: 'both' as const,
-      skills: ['technology', 'digital marketing', 'e-commerce', 'social media', 'content creation', 'analytics', 'online'],
-      description: 'An online business leveraging digital platforms for sales and services. Perfect for those with technical skills and digital marketing knowledge.'
+      skills: ['technology', 'digital marketing', 'e-commerce', 'social media', 'content creation', 'analytics', 'online', 'photography'],
+      description: 'Leverage digital platforms for sales and services. Perfect for tech-savvy individuals with marketing knowledge.'
     }
   ];
 
-  // Score each business based on user input
+  // Enhanced scoring algorithm with better skill matching
   const scoredBusinesses = allBusinesses.map(business => {
     let score = 0;
+    let skillMatches = 0;
+    let exactMatches = 0;
+    let semanticMatches = 0;
     
-    // Skill matching (40% weight)
-    const skillMatches = userSkills.filter((skill: string) => 
-      business.skills.some((businessSkill: string) => 
-        businessSkill.includes(skill) || skill.includes(businessSkill)
-      )
-    ).length;
-    score += (skillMatches / Math.max(userSkills.length, 1)) * 0.4;
+    // Advanced skill matching (60% weight)
+    userSkills.forEach((userSkill: string) => {
+      let bestMatch = 0;
+      
+      business.skills.forEach((businessSkill: string) => {
+        const userSkillLower = userSkill.toLowerCase();
+        const businessSkillLower = businessSkill.toLowerCase();
+        
+        // Exact match (highest priority)
+        if (userSkillLower === businessSkillLower) {
+          bestMatch = Math.max(bestMatch, 1.0);
+          exactMatches++;
+        }
+        // Contains match
+        else if (userSkillLower.includes(businessSkillLower) || businessSkillLower.includes(userSkillLower)) {
+          bestMatch = Math.max(bestMatch, 0.8);
+        }
+        // Semantic similarity
+        else {
+          const similarity = getSemanticSimilarity(userSkillLower, businessSkillLower);
+          if (similarity > 0.7) {
+            bestMatch = Math.max(bestMatch, similarity);
+            semanticMatches++;
+          }
+        }
+      });
+      
+      if (bestMatch > 0) {
+        skillMatches += bestMatch;
+      }
+    });
+    
+    // Normalize skill score
+    const skillScore = Math.min(1.0, skillMatches / Math.max(userSkills.length, 1));
+    score += skillScore * 0.6;
 
-    // Business type matching (20% weight)
-    if (!businessType || business.type === businessType || business.type === 'both') {
-      score += 0.2;
+    // Business type matching (25% weight)
+    if (businessType && business.type === businessType) {
+      score += 0.25;
+    } else if (!businessType || business.type === 'both') {
+      score += 0.15;
     }
 
-    // Location preference (20% weight)
-    const locationScores: Record<string, number> = {
-      urban: 1.0,
-      'semi-urban': 0.8,
-      rural: 0.6
-    };
-    const locationScore = locationScores[formData.location.toLowerCase()] || 0.8;
-    score += locationScore * 0.2;
-
-    // Experience level (20% weight)
+    // Experience level bonus (10% weight)
     const experienceScores: Record<string, number> = {
       none: 0.6,
-      beginner: 0.7,
-      intermediate: 0.8,
+      beginner: 0.75,
+      intermediate: 0.9,
       expert: 1.0
     };
-    const experienceScore = experienceScores[formData.experience.toLowerCase()] || 0.7;
-    score += experienceScore * 0.2;
+    const experienceScore = experienceScores[formData.experience.toLowerCase()] || 0.75;
+    score += experienceScore * 0.1;
 
+    // Location suitability (5% weight)
+    const locationScores: Record<string, number> = {
+      urban: 1.0,
+      'semi-urban': 0.9,
+      rural: 0.8
+    };
+    const locationScore = locationScores[formData.location.toLowerCase()] || 0.9;
+    score += locationScore * 0.05;
+
+    // Calculate confidence score
+    let confidence = Math.round(score * 100);
+    
+    // Boost confidence for strong skill matches
+    if (exactMatches >= 2) confidence += 15;
+    else if (exactMatches >= 1) confidence += 10;
+    if (semanticMatches >= 2) confidence += 8;
+    
+    // Apply algorithm-specific adjustments
+    const mlBoost = algorithm === 'ml' ? 1.1 : 1.0;
+    const finalScore = score * mlBoost;
+    
     return {
       ...business,
-      score,
-      confidenceScore: Math.min(95, Math.max(65, Math.round(score * 100))),
-      mlScore: algorithm === 'ml' ? score * 1.1 : score
+      score: finalScore,
+      skillScore,
+      exactMatches,
+      semanticMatches,
+      confidenceScore: Math.min(98, Math.max(65, confidence)),
+      mlScore: finalScore
     };
   });
 
-  // Sort by score and get top 3
+  // Sort by score and return top 3
   const topBusinesses = scoredBusinesses
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)
