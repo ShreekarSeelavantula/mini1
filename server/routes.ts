@@ -60,26 +60,73 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 // Semantic similarity function for skill matching
 function getSemanticSimilarity(skill1: string, skill2: string): number {
-  const skillSynonyms: Record<string, string[]> = {
-    'sewing': ['stitching', 'tailoring', 'garment making', 'needle work', 'embroidery', 'fashion design'],
-    'cooking': ['culinary', 'food preparation', 'baking', 'catering', 'recipe development', 'food service'],
-    'art & craft': ['handicrafts', 'creativity', 'traditional arts', 'pottery', 'woodwork', 'art'],
-    'teaching': ['tutoring', 'education', 'training', 'mentoring', 'academic', 'communication'],
-    'beauty & makeup': ['hair styling', 'skincare', 'aesthetics', 'cosmetics', 'beauty'],
-    'technology': ['digital marketing', 'online', 'e-commerce', 'social media', 'content creation'],
-    'management': ['business', 'leadership', 'organization', 'planning', 'administration'],
-    'sales': ['marketing', 'customer service', 'business development', 'promotion'],
-    'communication': ['writing', 'presentation', 'public speaking', 'customer service'],
-    'photography': ['visual arts', 'digital media', 'content creation', 'image editing'],
-    'accounting': ['finance', 'bookkeeping', 'financial management', 'taxation'],
-    'event planning': ['organization', 'coordination', 'project management', 'logistics']
+  // Direct skill mappings for exact business matches
+  const directMappings: Record<string, Record<string, number>> = {
+    'sewing': {
+      'tailoring': 0.95,
+      'stitching': 0.9,
+      'garment making': 0.9,
+      'fashion design': 0.85,
+      'embroidery': 0.8,
+      'alterations': 0.85,
+      'pattern making': 0.85
+    },
+    'cooking': {
+      'culinary': 0.95,
+      'food preparation': 0.9,
+      'baking': 0.85,
+      'catering': 0.85,
+      'recipe development': 0.8,
+      'food service': 0.8
+    },
+    'art & craft': {
+      'handicrafts': 0.95,
+      'creativity': 0.85,
+      'traditional arts': 0.9,
+      'pottery': 0.85,
+      'woodwork': 0.8,
+      'jewelry making': 0.85,
+      'handmade': 0.85
+    },
+    'teaching': {
+      'tutoring': 0.95,
+      'education': 0.9,
+      'training': 0.85,
+      'mentoring': 0.85,
+      'academic': 0.8
+    },
+    'beauty & makeup': {
+      'hair styling': 0.9,
+      'skincare': 0.85,
+      'aesthetics': 0.85,
+      'cosmetics': 0.9,
+      'beauty': 0.95
+    },
+    'technology': {
+      'digital marketing': 0.85,
+      'online': 0.8,
+      'e-commerce': 0.85,
+      'social media': 0.8,
+      'content creation': 0.75
+    }
   };
 
-  // Check if skills are synonyms
-  for (const [mainSkill, synonyms] of Object.entries(skillSynonyms)) {
-    if ((skill1.includes(mainSkill) || synonyms.some(syn => skill1.includes(syn))) &&
-        (skill2.includes(mainSkill) || synonyms.some(syn => skill2.includes(syn)))) {
-      return 0.9;
+  // Check direct mappings first
+  for (const [userSkill, businessMappings] of Object.entries(directMappings)) {
+    if (skill1.includes(userSkill)) {
+      for (const [businessSkill, similarity] of Object.entries(businessMappings)) {
+        if (skill2.includes(businessSkill)) {
+          return similarity;
+        }
+      }
+    }
+    // Reverse check
+    if (skill2.includes(userSkill)) {
+      for (const [businessSkill, similarity] of Object.entries(businessMappings)) {
+        if (skill1.includes(businessSkill)) {
+          return similarity;
+        }
+      }
     }
   }
 
@@ -97,7 +144,7 @@ function getSemanticSimilarity(skill1: string, skill2: string): number {
     });
   });
 
-  return commonWords > 0 ? 0.7 : 0;
+  return commonWords > 0 ? 0.6 : 0;
 }
 
 // Enhanced business recommendation logic
@@ -159,34 +206,35 @@ function generateRecommendations(formData: any, algorithm: string) {
     
     // Advanced skill matching (60% weight)
     userSkills.forEach((userSkill: string) => {
-      let bestMatch = 0;
+      let skillMatchFound = false;
       
       business.skills.forEach((businessSkill: string) => {
-        const userSkillLower = userSkill.toLowerCase();
-        const businessSkillLower = businessSkill.toLowerCase();
+        const userSkillLower = userSkill.toLowerCase().trim();
+        const businessSkillLower = businessSkill.toLowerCase().trim();
         
         // Exact match (highest priority)
         if (userSkillLower === businessSkillLower) {
-          bestMatch = Math.max(bestMatch, 1.0);
+          skillMatches += 1.0;
           exactMatches++;
+          skillMatchFound = true;
         }
-        // Contains match
+        // Contains match (user skill contains business skill or vice versa)
         else if (userSkillLower.includes(businessSkillLower) || businessSkillLower.includes(userSkillLower)) {
-          bestMatch = Math.max(bestMatch, 0.8);
+          if (!skillMatchFound) {
+            skillMatches += 0.9;
+            skillMatchFound = true;
+          }
         }
         // Semantic similarity
         else {
           const similarity = getSemanticSimilarity(userSkillLower, businessSkillLower);
-          if (similarity > 0.7) {
-            bestMatch = Math.max(bestMatch, similarity);
+          if (similarity > 0.8 && !skillMatchFound) {
+            skillMatches += similarity;
             semanticMatches++;
+            skillMatchFound = true;
           }
         }
       });
-      
-      if (bestMatch > 0) {
-        skillMatches += bestMatch;
-      }
     });
     
     // Normalize skill score
@@ -242,8 +290,13 @@ function generateRecommendations(formData: any, algorithm: string) {
     };
   });
 
-  // Sort by score and return top 3
-  const topBusinesses = scoredBusinesses
+  // Filter businesses with meaningful skill matches (minimum 40% skill relevance)
+  const relevantBusinesses = scoredBusinesses.filter(business => {
+    return business.skillScore >= 0.4; // Only show if at least 40% skill match
+  });
+
+  // Sort by score and return top matches (up to 3)
+  const topBusinesses = relevantBusinesses
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)
     .map(business => ({
